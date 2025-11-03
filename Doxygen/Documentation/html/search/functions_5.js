@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['setheight_0',['SetHeight',['../class_tea_packet_1_1_graphics_1_1_display.html#a6d3a416d8a71fa0583b7705978c581e6',1,'TeaPacket::Graphics::Display::SetHeight()'],['../class_tea_packet_1_1_window_1_1_window.html#ac82fd6240dc15a2c6def2fffe25bd78d',1,'TeaPacket::Window::Window::SetHeight(unsigned short newHeight)']]],
+  ['settitle_1',['SetTitle',['../class_tea_packet_1_1_window_1_1_window.html#a6061eb33ae681d7a6498a6b6ac5c5069',1,'TeaPacket::Window::Window']]],
+  ['setwidth_2',['SetWidth',['../class_tea_packet_1_1_graphics_1_1_display.html#a6fad40de8d3d5b0dbc4016ca23fb12eb',1,'TeaPacket::Graphics::Display::SetWidth()'],['../class_tea_packet_1_1_window_1_1_window.html#a00e4f9acb0352bc0a611da3bc8f3c697',1,'TeaPacket::Window::Window::SetWidth(unsigned short newWidth)']]],
+  ['setxpos_3',['SetXPos',['../class_tea_packet_1_1_window_1_1_window.html#a869e36da3695380e8ab097d682478c8e',1,'TeaPacket::Window::Window']]],
+  ['setypos_4',['SetYPos',['../class_tea_packet_1_1_window_1_1_window.html#acde4847be381d3634e829e419b8f02b9',1,'TeaPacket::Window::Window']]]
+];
