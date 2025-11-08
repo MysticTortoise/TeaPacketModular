@@ -4,6 +4,8 @@
 #include <d3d11.h>
 
 #include "TeaPacket/Graphics/Display.hpp"
+#include "TeaPacket/Graphics/PlatformMesh.hpp"
+#include "TeaPacket/Graphics/Mesh/Mesh.hpp"
 #include "TeaPacket/MacroUtils/WindowsSpecific.hpp"
 
 using namespace TeaPacket;
@@ -47,4 +49,15 @@ void Graphics::DeInitialize()
     device.Reset();
     deviceContext.Reset();
     Display::DeInitialize();
+}
+
+void Graphics::DrawMesh()
+{
+    const Mesh* meshToDraw = Mesh::activeMesh;
+    assert(meshToDraw != nullptr);
+    
+    if (meshToDraw->hasIndex)
+    {
+        deviceContext->DrawIndexed(meshToDraw->platformMesh->indexCount, 0, 0);
+    }
 }
