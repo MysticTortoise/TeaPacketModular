@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <vector>
 
+#include <array>
+
 namespace TeaPacket
 {
     template<typename T>
@@ -38,7 +40,7 @@ namespace TeaPacket
         size(other.size),
         data(new T[other.size])
         {
-            memcpy(data, other.data, size);
+            memcpy(data, other.data, size * sizeof(T));
         }
         // Copy Assignment
         void operator=(const FixedArray& other)
@@ -48,7 +50,7 @@ namespace TeaPacket
             this->size = other.size;
             delete[] data;
             data = new T[other.size];
-            memcpy(data, other.data, other.size);
+            memcpy(data, other.data, other.size * sizeof(T));
         }
 
         // Move Constructor
