@@ -26,7 +26,7 @@ namespace TeaPacket::Graphics
     struct ShaderParameters
     {
         ShaderFlags flags;
-        std::string& vertexShaderCode, fragmentShaderCode;
+        const std::string& vertexShaderCode, fragmentShaderCode;
         FixedArray<ShaderVariableType>& inputAttributes;
         std::optional<FixedArray<ShaderVariableType>*> uniforms;
     };

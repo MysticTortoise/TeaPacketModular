@@ -11,33 +11,11 @@
 #include "TeaPacket/Graphics/Texture/TextureData.hpp"
 #include "TeaPacket/System/System.hpp"
 #include "TeaPacket/Types/Enums/PrimitiveTypes.hpp"
+#include "TeaPacket/Assets/ReadAsset.hpp"
 
+using namespace TeaPacket;
 using namespace TeaPacket::Window;
-
-std::string vertShader = "static float4 gl_Position;"
-"static float2 i_position;"
-"struct SPIRV_Cross_Input"
-"{"
-"    float2 i_position : TEXCOORD0;"
-"};"
-"struct SPIRV_Cross_Output"
-"{"
-"    float4 gl_Position : SV_Position;"
-"};"
-"void vert_main()"
-"{"
-"    gl_Position = float4(i_position, 0.5f, 1.0f);"
-"}"
-"SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)	"
-"{"
-"    i_position = stage_input.i_position;"
-"    vert_main();"
-"    SPIRV_Cross_Output stage_output;"
-"    stage_output.gl_Position = gl_Position;"
-"    return stage_output;"
-"}";
-
-const std::string pixelShader = "static float4 o_color;struct SPIRV_Cross_Input{};struct SPIRV_Cross_Output{    float4 o_color : SV_Target0;};void frag_main(){o_color = float4(0.0,0.0,1.0,1.0);}SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input){    frag_main();    SPIRV_Cross_Output stage_output;    stage_output.o_color = o_color;    return stage_output;}";
+using namespace TeaPacket::Graphics;
 
 constexpr float vertData[] = {
     0.0f, 1.0f,
@@ -51,35 +29,36 @@ unsigned long faceData[] = {
 
 [[noreturn]] int main()
 {
-    TeaPacket::Graphics::Initialize();
-    auto dispParams = TeaPacket::Graphics::DisplayParameters{.width = 1280, .height = 720};
-    TeaPacket::Graphics::Display::InitializeDefaultDisplays({dispParams});
-    TeaPacket::Graphics::Viewport* viewport = TeaPacket::Graphics::Display::GetDisplay(0)->GetViewport();
+    Initialize();
+    auto dispParams = DisplayParameters{.width = 1280, .height = 720};
+    Display::InitializeDefaultDisplays({dispParams});
+    Viewport* viewport = Display::GetDisplay(0)->GetViewport();
 
-    auto vertInfo = TeaPacket::FixedArray<TeaPacket::Graphics::VertexDataInfo>(1);
+    auto vertInfo = TeaPacket::FixedArray<VertexDataInfo>(1);
     vertInfo[0].size = 2;
     vertInfo[0].type = TeaPacket::PrimitiveType::Float;
     
-    const auto meshParms = TeaPacket::Graphics::MeshParameters{
-        .flags = TeaPacket::Graphics::MeshFlags{.useIndices = true},
+    const auto meshParms = MeshParameters{
+        .flags = MeshFlags{.useIndices = true},
         .vertexData = TeaPacket::BorrowedFixedArray((void*)vertData, sizeof(vertData)),
         .vertexInfo = vertInfo,
         .indices = TeaPacket::BorrowedFixedArray(faceData, 3)
     };
-    auto mesh = TeaPacket::Graphics::Mesh(meshParms);
+    auto mesh = Mesh(meshParms);
 
-    auto inputAttrs = TeaPacket::FixedArray<TeaPacket::Graphics::ShaderVariableType>(1);
-    inputAttrs[0].baseType = TeaPacket::Graphics::ShaderVariableBaseType::Float;
+    auto inputAttrs = TeaPacket::FixedArray<ShaderVariableType>(1);
+    inputAttrs[0].baseType = ShaderVariableBaseType::Float;
     inputAttrs[0].amount = 2;
-    auto uniform = TeaPacket::FixedArray<TeaPacket::Graphics::ShaderVariableType>(0);
-    const auto shaderParms = TeaPacket::Graphics::ShaderParameters{
+    auto uniform = TeaPacket::FixedArray<ShaderVariableType>(0);
+    
+    const auto shaderParms = ShaderParameters{
         .flags = {},
-        .vertexShaderCode = vertShader,
-        .fragmentShaderCode = pixelShader,
+        .vertexShaderCode = Assets::ReadTextFile("test.vert"),
+        .fragmentShaderCode = Assets::ReadTextFile("test.frag"),
         .inputAttributes = inputAttrs,
         .uniforms = std::nullopt
     };
-    auto shader = TeaPacket::Graphics::Shader(shaderParms);
+    auto shader = Shader(shaderParms);
     
     while (true)
     {
@@ -89,7 +68,7 @@ unsigned long faceData[] = {
 
         mesh.SetActive();
         shader.SetActive();
-        TeaPacket::Graphics::DrawMesh();
+        DrawMesh();
         
         viewport->FinishRender();
         static int number = 0;
@@ -101,5 +80,5 @@ unsigned long faceData[] = {
             std::cout << static_cast<std::string>(rgb);
         }
     }
-    TeaPacket::Graphics::DeInitialize();
+    DeInitialize();
 }

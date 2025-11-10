@@ -1048,3 +1048,5 @@ dkms.conf
 build/*
 # Any TeaPacket generated headers
 *.gen
+.idea/.name
+.idea/misc.xml
