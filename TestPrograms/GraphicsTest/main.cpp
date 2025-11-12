@@ -34,22 +34,22 @@ unsigned long faceData[] = {
     Display::InitializeDefaultDisplays({dispParams});
     Viewport* viewport = Display::GetDisplay(0)->GetViewport();
 
-    auto vertInfo = TeaPacket::FixedArray<VertexDataInfo>(1);
+    auto vertInfo = FixedArray<VertexDataInfo>(1);
     vertInfo[0].size = 2;
-    vertInfo[0].type = TeaPacket::PrimitiveType::Float;
+    vertInfo[0].type = PrimitiveType::Float;
     
     const auto meshParms = MeshParameters{
         .flags = MeshFlags{.useIndices = true},
-        .vertexData = TeaPacket::BorrowedFixedArray((void*)vertData, sizeof(vertData)),
+        .vertexData = BorrowedFixedArray((void*)vertData, sizeof(vertData)),
         .vertexInfo = vertInfo,
-        .indices = TeaPacket::BorrowedFixedArray(faceData, 3)
+        .indices = BorrowedFixedArray(faceData, 3)
     };
     auto mesh = Mesh(meshParms);
 
-    auto inputAttrs = TeaPacket::FixedArray<ShaderVariableType>(1);
+    auto inputAttrs = FixedArray<ShaderVariableType>(1);
     inputAttrs[0].baseType = ShaderVariableBaseType::Float;
     inputAttrs[0].amount = 2;
-    auto uniform = TeaPacket::FixedArray<ShaderVariableType>(0);
+    auto uniform = FixedArray<ShaderVariableType>(0);
     
     const auto shaderParms = ShaderParameters{
         .flags = {},
@@ -62,7 +62,7 @@ unsigned long faceData[] = {
     
     while (true)
     {
-        TeaPacket::System::ProcessSystem();
+        System::ProcessSystem();
         viewport->BeginRender();
         viewport->ClearColor(255, 0, 0);
 

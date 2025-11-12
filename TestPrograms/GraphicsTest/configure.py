@@ -12,7 +12,8 @@ def configure(teapacket_root):
     import_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(import_module)
     os.chdir(dname)
-    import_module.run(os.path.abspath("assets"), os.path.abspath("build/windows/Debug/"), "STDFile")
+    print(teapacket_root)
+    import_module.run(os.path.abspath("assets"), os.path.abspath("build/windows/Debug/"), "STDFile", set({teapacket_root + "/Modules/Graphics/Direct3D11/AssetMixer/Parsers/"}))
 
     os.chdir(old_cwd)
 

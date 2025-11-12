@@ -5,3 +5,5 @@ def parse_and_copy(source_file, dest_file):
     os.makedirs(dest_dir, exist_ok=True)
 
     shutil.copyfile(source_file, dest_file)
+    with open(dest_file, "a") as outfile:
+        outfile.write("\nAAAA")

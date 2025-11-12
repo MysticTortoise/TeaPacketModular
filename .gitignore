@@ -1046,6 +1046,8 @@ dkms.conf
 
 # Build folders
 build/*
+# External Tools folders
+external_tools/*
 # Any TeaPacket generated headers
 *.gen
 .idea/.name

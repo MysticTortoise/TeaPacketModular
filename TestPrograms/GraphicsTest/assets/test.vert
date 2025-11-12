@@ -1,26 +1,8 @@
-static float4 gl_Position;
-static float2 i_position;
+#version 450
 
-struct SPIRV_Cross_Input
-{
-    float2 i_position : TEXCOORD0;
-};
+layout(location = 0) in vec2 i_position;
 
-struct SPIRV_Cross_Output
+void main()
 {
-    float4 gl_Position : SV_Position;
-};
-
-void vert_main()
-{
-    gl_Position = float4(i_position, 0.5f, 1.0f);
-}
-
-SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)	
-{
-    i_position = stage_input.i_position;
-    vert_main();
-    SPIRV_Cross_Output stage_output;
-    stage_output.gl_Position = gl_Position;
-    return stage_output;
+    gl_Position = vec4(i_position, 0.5f, 1.0f);
 }
