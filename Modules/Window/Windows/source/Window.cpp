@@ -1,6 +1,8 @@
 #include <memory>
 
 #include "TeaPacket/Window/Window.hpp"
+
+#include "TeaPacket/System/System.hpp"
 #include "TeaPacket/Window/PlatformWindow.hpp"
 
 using namespace TeaPacket::Window;
@@ -12,6 +14,7 @@ static LRESULT WindowProc(const HWND hWnd, const UINT message, const WPARAM wPar
     case WM_DESTROY:
     case WM_QUIT:
         PostQuitMessage(0);
+        TeaPacket::System::isRunning = false;
         return 0;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

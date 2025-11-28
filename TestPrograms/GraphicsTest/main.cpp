@@ -80,7 +80,7 @@ unsigned char texData[] = {
     constexpr float data[] = {0, 1, 0, 1};
     shader.SendUniformBuffer((unsigned char*)data, 0);
 
-    const auto texParms = TextureParameters{
+    constexpr auto texParms = TextureParameters{
         .data = texData,
         .width = 3,
         .height = 3,
@@ -96,7 +96,7 @@ unsigned char texData[] = {
     auto tex = Texture(texParms);
     tex.SetActive(1);
     
-    while (true)
+    while (System::isRunning)
     {
         System::ProcessSystem();
         viewport->BeginRender();
