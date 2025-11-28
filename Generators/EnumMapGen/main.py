@@ -95,7 +95,7 @@ def generate(file):
                 this_index = enums.index(enum)
                 other_index = enums.index(other_enum)
 
-                for i in range(len(enums)+1):
+                for i in range(len(enum_map)):
                     genfile.write("case " + enum_map[i][this_index] + ": return " + enum_map[i][other_index] + ";\n")
                 
                 genfile.write("default: throw std::exception(\"" + error_message + "\");\n")
