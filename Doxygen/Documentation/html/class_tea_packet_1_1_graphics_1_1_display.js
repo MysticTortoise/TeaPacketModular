@@ -1,9 +1,10 @@
 var class_tea_packet_1_1_graphics_1_1_display =
 [
-    [ "DeInitialize", "class_tea_packet_1_1_graphics_1_1_display.html#a365086788e0468709e209d78f4ac57c1", null ],
-    [ "GetHeight", "class_tea_packet_1_1_graphics_1_1_display.html#a2eed92d56d90e356234fb5a76849872e", null ],
-    [ "GetWidth", "class_tea_packet_1_1_graphics_1_1_display.html#ad01e75fc00fbfc0c59c779b09d0e87a2", null ],
-    [ "Initialize", "class_tea_packet_1_1_graphics_1_1_display.html#ace23ad76462db484847b465ad9e2a889", null ],
-    [ "SetHeight", "class_tea_packet_1_1_graphics_1_1_display.html#a6d3a416d8a71fa0583b7705978c581e6", null ],
-    [ "SetWidth", "class_tea_packet_1_1_graphics_1_1_display.html#a6fad40de8d3d5b0dbc4016ca23fb12eb", null ]
+    [ "Display", "class_tea_packet_1_1_graphics_1_1_display.html#ab6c7e5f1e9a8a56be8dc651145dfc2af", null ],
+    [ "~Display", "class_tea_packet_1_1_graphics_1_1_display.html#acc88a752f899ec5aa6a2bc0bb857723d", null ],
+    [ "GetHeight", "class_tea_packet_1_1_graphics_1_1_display.html#ab2ddf0806f1326fc928bece91d7780bf", null ],
+    [ "GetViewport", "class_tea_packet_1_1_graphics_1_1_display.html#a80703faf067954634c8fe7398653b1b7", null ],
+    [ "GetWidth", "class_tea_packet_1_1_graphics_1_1_display.html#a969f5ae0df46851353ededb1bbdbcfeb", null ],
+    [ "PresentDisplay", "class_tea_packet_1_1_graphics_1_1_display.html#a355cf89eb2cd8c0b3c927a3ebb360398", null ],
+    [ "platformDisplay", "class_tea_packet_1_1_graphics_1_1_display.html#a63d8f6a0aa193b74ab3f3c0f74b68da1", null ]
 ];

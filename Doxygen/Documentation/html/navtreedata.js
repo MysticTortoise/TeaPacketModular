@@ -25,9 +25,15 @@
 var NAVTREE =
 [
   [ "TeaPacket", "index.html", [
-    [ "Topics", "topics.html", "topics" ],
+    [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -42,8 +48,7 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -52,8 +57,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_display_8cpp.html",
-"struct_tea_packet_1_1_window_1_1_platform_window.html"
+"_borrowed_fixed_array_8hpp.html",
+"dir_01e9f0b17551d42fa6c9936dff702364.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
