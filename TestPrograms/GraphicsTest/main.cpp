@@ -102,7 +102,7 @@ unsigned char texData[] = {
     {
         System::ProcessSystem();
         viewport->BeginRender();
-        viewport->ClearColor(255, 0, 0);
+        Viewport::ClearColor(255, 0, 0);
 
         mesh.SetActive();
         shader.SetActive();

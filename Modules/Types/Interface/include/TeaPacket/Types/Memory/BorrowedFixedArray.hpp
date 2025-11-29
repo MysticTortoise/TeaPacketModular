@@ -1,13 +1,10 @@
 #pragma once
 
-#include <assert.h>
-#include <unordered_map>
-#include <vector>
-
 namespace TeaPacket
 {
-    /// Like a FixedArray, but it does not own the data it contains.
-    /// BorrowedFixedArray will not delete its data! Be sure to free this yourself.
+    /// @brief A wrapper around a pointer to an array with information about how large the array is.
+    /// @details BorrowedFixedArray does not own the data it represents.
+    /// It cannot resize the data, but it is allowed to modify it.
     template<typename T>
     class BorrowedFixedArray
     {
@@ -30,7 +27,7 @@ namespace TeaPacket
             return data[x];
         }
 
-        size_t SizeOf() const
+        [[nodiscard]] size_t SizeOf() const
         {
             return sizeof(T) * size;
         }
@@ -42,6 +39,8 @@ namespace TeaPacket
         T const* end() const { return &data[size-1]; }
     };
 
+    /// @brief Template override for a void BorrowedFixedArray.
+    /// @details Data cannot be modified directly via this BorrowedFixedArray, but it is still useful in some cases.
     template<>
     class BorrowedFixedArray<void>
     {

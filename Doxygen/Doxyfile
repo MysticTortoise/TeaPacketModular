@@ -991,7 +991,14 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ../
+INPUT                  = ../Modules/Assets/Interface/include
+INPUT += ../Modules/Graphics/Interface/include
+INPUT += ../Modules/Logging/Interface/include
+INPUT += ../Modules/MacroUtils/Interface/include
+INPUT += ../Modules/Math/Interface/include
+INPUT += ../Modules/System/Interface/include
+INPUT += ../Modules/Types/Interface/include
+INPUT += ../Modules/Window/Interface/include
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses

@@ -1052,3 +1052,6 @@ external_tools/*
 *.gen
 .idea/.name
 .idea/misc.xml
+
+# Documentation
+./Doxygen/Documentation/*

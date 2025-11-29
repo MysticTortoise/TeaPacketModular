@@ -10,19 +10,27 @@ namespace TeaPacket::Graphics{
     struct DisplayParameters;
 
     /// @brief Represents a user-viewable area.
+    /// @details On PC-based implementations, this typically represents a window.
+    /// On non-PC implementations, this typically represents a screen.
     class Display{
         public:
-
+        /// Gets the height of the Display.
         [[nodiscard]] uint16_t GetWidth() const {return viewport.GetWidth(); }
+        /// Gets the width of the display.
         [[nodiscard]] uint16_t GetHeight() const { return viewport.GetHeight(); }
 
+        /// Gets the viewport of this display.
         [[nodiscard]] Viewport* GetViewport() { return &viewport; }
 
+        /// Constructs a display from parameters.
         explicit Display(const DisplayParameters& parameters);
         ~Display();
 
+        /// Updates the Display with any new rendered changes from the viewport.
+        /// @note This does not need to be called by the user. Viewport::FinishRender() will call this.
         void PresentDisplay();
 
+        /// A pointer to the implementation-defined data this display uses.
         std::unique_ptr<PlatformDisplay> platformDisplay;
 
         private:
@@ -30,9 +38,16 @@ namespace TeaPacket::Graphics{
 
 
     public:
+        /// @brief Creates any number of displays, based on the platform.
+        /// @details This function will always create at least 1 display.
+        /// On PC platforms, this function will create a single window to be rendered to.
+        /// On other platforms, this will create a Display for every screen that can be rendered to.
         static void InitializeDefaultDisplays(const std::vector<DisplayParameters>& requestedParameters);
+        /// Gets the total number of created displays.
         static [[nodiscard]] size_t GetDisplayCount() { return Displays.size(); }
+        /// Gets a display by index. Displays are given indices in ascending order.
         static [[nodiscard]] Display* GetDisplay(const unsigned char index) { return Displays[index].get(); }
+        /// Destroys all Displays,
         static void DeInitialize();
 
     private:

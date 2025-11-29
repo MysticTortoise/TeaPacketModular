@@ -3,6 +3,7 @@
 
 namespace TeaPacket
 {
+    /// Represents a primitive type.
     enum class PrimitiveType : unsigned char
     {
         Bool,
@@ -17,7 +18,8 @@ namespace TeaPacket
         ULong
     };
 
-    constexpr size_t SizeOfPrimitiveType(PrimitiveType type)
+    /// Gets the memory size of a primitive type.
+    [[nodiscard]] constexpr size_t SizeOfPrimitiveType(const PrimitiveType type)
     {
         switch (type)
         {

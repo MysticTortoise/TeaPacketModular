@@ -4,8 +4,10 @@
 
 namespace TeaPacket
 {
+    /// Logs a string to an implementation-defined location.
     void LogString(const std::string& msg);
 
+    /// Logs any string-castable data.
     template<typename T>
     void Log(T msg)
     {

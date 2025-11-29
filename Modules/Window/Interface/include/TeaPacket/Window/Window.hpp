@@ -11,7 +11,7 @@ namespace TeaPacket::Graphics
     class Display;
 }
 
-
+/// A module for managing windows on PC platforms. Not required but used by several backends.
 namespace TeaPacket::Window
 {
     struct PlatformWindow;

@@ -125,10 +125,9 @@ void Viewport::FinishRender()
     activeViewport = nullptr;
 }
 
-void Viewport::ClearColor(unsigned char r, unsigned char g, unsigned char b)
+void Viewport::ClearColor(const unsigned char r, const unsigned char g, const unsigned char b)
 {
-    assert(activeViewport == this);
     const float colorArray[4] = {r / 255.0f, g / 255.0f, b / 255.0f, 1.0f};
-    deviceContext->ClearRenderTargetView(platformViewport->renderTargetView.Get(),colorArray);
-    deviceContext->ClearDepthStencilView(platformViewport->depthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+    deviceContext->ClearRenderTargetView(activeViewport->platformViewport->renderTargetView.Get(),colorArray);
+    deviceContext->ClearDepthStencilView(activeViewport->platformViewport->depthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

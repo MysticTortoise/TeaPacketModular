@@ -6,25 +6,30 @@
 namespace TeaPacket
 {
     enum class PrimitiveType : unsigned char;
-    
 }
 
 namespace TeaPacket::Graphics
 {
 
 
-    
+    /// The flags that a shader uses, in a standalone struct for packing purposes.
     struct ShaderFlags
     {
         
     };
 
-
+    /// The parameters a shader takes on creation.
     struct ShaderParameters
     {
+        /// The flags this shader will use.
         ShaderFlags flags;
-        const std::string& vertexShaderCode, fragmentShaderCode;
+        /// The vertex shader code this shader uses. Language is implementation-defined but use of AssetMixer is highly recommended.
+        const std::string& vertexShaderCode;
+        /// The fragment (pixel) shader code this shader uses. Language is implementation-defined but use of AssetMixer is highly recommended.
+        const std::string&fragmentShaderCode;
+        /// A list describing the vertex inputs this shader takes.
         std::vector<ShaderVariableType>& inputAttributes;
+        /// A list of Uniform Buffer sizes this shader uses.
         std::vector<size_t> uniformBufferSizes;
     };
 }

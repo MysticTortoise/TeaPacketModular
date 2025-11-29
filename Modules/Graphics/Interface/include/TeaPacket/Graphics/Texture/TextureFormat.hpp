@@ -5,6 +5,7 @@
 
 namespace TeaPacket::Graphics
 {
+    /// A format for a texture. Determines how the data is interpreted on creation, and how much space the format takes up on the GPU.
     enum class TextureFormat : unsigned short
     {
         RGBA8, ///< A 4 channel 8 bpp texture format that supports 8 channels for Red, Green, Blue, Alpha
@@ -13,7 +14,8 @@ namespace TeaPacket::Graphics
         NONE
     };
 
-    constexpr std::vector<unsigned char> GetTextureFormatChannelSizes(const TextureFormat format){
+    /// Returns the size of each channel of a format.
+    [[nodiscard]] constexpr std::vector<unsigned char> GetTextureFormatChannelSizes(const TextureFormat format){
         using enum TextureFormat;
         switch (format)
         {
@@ -25,7 +27,8 @@ namespace TeaPacket::Graphics
         throw std::exception();
     }
 
-    constexpr  uint8_t GetTextureFormatBPP(const TextureFormat format)
+    /// Returns the Bits-Per-Pixel of a texture format.
+    [[nodiscard]] constexpr  uint8_t GetTextureFormatBPP(const TextureFormat format)
     {
         using enum TextureFormat;
         switch (format)
@@ -38,7 +41,8 @@ namespace TeaPacket::Graphics
         throw std::exception();
     }
 
-    constexpr uint8_t GetTextureFormatBytesPerPixel(const TextureFormat format)
+    /// Returns the Bytes-Per-Pixel of a texture format.
+    [[nodiscard]] constexpr uint8_t GetTextureFormatBytesPerPixel(const TextureFormat format)
     {
         return GetTextureFormatBPP(format)/8;
     }
