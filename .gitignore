@@ -1055,3 +1055,6 @@ external_tools/*
 
 # Documentation
 ./Doxygen/Documentation/*
+
+# CLION SHUT UP
+./.idea/.name
