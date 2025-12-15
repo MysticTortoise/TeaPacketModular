@@ -19,11 +19,11 @@ int main()
     {
         System::ProcessSystem();
         Display::WaitForVSync();
-        Display::GetDisplay(0)->GetViewport()->BeginRender();
-        Display::GetDisplay(0)->GetViewport()->FinishRender();
-        Display::GetDisplay(1)->GetViewport()->BeginRender();
-        Display::GetDisplay(1)->GetViewport()->FinishRender();
-
+        
+        Display::BeginRender(0);
+        Display::FinishRender(0);
+        Display::BeginRender(1);
+        Display::FinishRender(1);
         Display::PresentAll();
     }
     

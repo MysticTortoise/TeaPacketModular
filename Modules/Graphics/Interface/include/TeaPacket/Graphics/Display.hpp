@@ -46,6 +46,15 @@ namespace TeaPacket::Graphics{
         /// Destroys all Displays,
         static void DeInitialize();
 
+        static void BeginRender(const unsigned char index)
+        {
+            GetDisplay(index)->GetViewport()->BeginRender();
+        }
+        static void FinishRender(const unsigned char index)
+        {
+            GetDisplay(index)->GetViewport()->FinishRender();
+        }
+
         static void PresentAll();
         static void WaitForVSync();
 
