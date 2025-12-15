@@ -19,10 +19,13 @@ int main()
     {
         System::ProcessSystem();
         Display::WaitForVSync();
+        static uint16_t number = 0;
+        number = (number + 1) % 255;
         
         Display::BeginRender(0);
         Display::FinishRender(0);
         Display::BeginRender(1);
+        Viewport::ClearColor(number, 0, 0);
         Display::FinishRender(1);
         Display::PresentAll();
     }

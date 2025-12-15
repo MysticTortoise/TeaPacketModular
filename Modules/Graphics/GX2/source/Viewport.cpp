@@ -1,5 +1,6 @@
 #include "TeaPacket/Graphics/Viewport.hpp"
 
+#include <gx2/clear.h>
 #include <gx2/context.h>
 #include <gx2/mem.h>
 #include <gx2/registers.h>
@@ -182,6 +183,20 @@ void Viewport::FinishRender()
         GX2CopyColorBufferToScanBuffer(&platformViewport->colorBuffer, target);
     }
 }
+
+constexpr float CharTo1Factor = 1.0f/255.0f;
+
+void Viewport::ClearColor(const unsigned char r, const unsigned char g, const unsigned char b)
+{
+    if (activeViewport == nullptr) { return; }
+    GX2ClearColor(&activeViewport->platformViewport->colorBuffer,
+        r * CharTo1Factor, g * CharTo1Factor, b * CharTo1Factor, 1.0f);
+    GX2ClearDepthStencilEx(&activeViewport->platformViewport->depthBuffer,
+        activeViewport->platformViewport->depthBuffer.depthClear,
+        activeViewport->platformViewport->depthBuffer.stencilClear,
+        GX2_CLEAR_FLAGS_DEPTH | GX2_CLEAR_FLAGS_STENCIL);
+}
+
 
 
 Viewport::~Viewport() = default;
