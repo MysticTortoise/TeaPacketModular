@@ -2,28 +2,22 @@
 
 #include "GraphicsHeap/GraphicsHeap.hpp"
 
-#include <exception>
 #include <stdexcept>
 
 #include <gx2/clear.h>
-#include <gx2/context.h>
 #include <gx2/display.h>
-#include <gx2/event.h>
-#include <gx2/mem.h>
-#include <gx2/registers.h>
 #include <gx2/shaders.h>
 #include <gx2/state.h>
-#include <gx2/surface.h>
-#include <gx2/swap.h>
-#include <gx2/temp.h>
-#include <gx2r/mem.h>
-
-#include <whb/gfx.h>
 #include <coreinit/memdefaultheap.h>
+#include <gx2/draw.h>
+#include <gx2/registers.h>
 
-
+#include "TeaPacket/Graphics/PlatformMesh.hpp"
 #include "TeaPacket/Graphics/Display.hpp"
 #include "TeaPacket/Logging/Logging.hpp"
+
+#include "CafeGLSL/CafeGLSLCompiler.hpp"
+#include "TeaPacket/Graphics/Mesh/Mesh.hpp"
 
 #define WHB_GFX_COMMAND_BUFFER_POOL_SIZE (0x400000)
 
@@ -55,11 +49,26 @@ void Graphics::Initialize()
     };
     GX2Init(initAttribs);
     InitializeMemory();
+    GLSL_Init();
+
+
+    GX2SetPolygonControl(
+        GX2_FRONT_FACE_CW,
+        FALSE,
+        TRUE,
+        TRUE,
+        GX2_POLYGON_MODE_TRIANGLE,
+        GX2_POLYGON_MODE_TRIANGLE,
+        FALSE,
+        FALSE,
+        FALSE
+        );
     
 }
 
 void Graphics::DeInitialize()
 {
+    GLSL_Shutdown();
     Display::DeInitialize();
     DeInitializeMemory();
     GX2Shutdown();
@@ -68,5 +77,18 @@ void Graphics::DeInitialize()
 
 void Graphics::DrawMesh()
 {
+    const Mesh* meshToDraw = Mesh::activeMesh;
+    assert(meshToDraw != nullptr);
+    
+    if (meshToDraw->hasIndex)
+    {
+        GX2DrawIndexedEx(
+            GX2_PRIMITIVE_MODE_TRIANGLES,
+            meshToDraw->platformMesh->indexCount,
+            GX2_INDEX_TYPE_U32,
+            meshToDraw->platformMesh->indexBuffer.data(),
+            0,
+            1);
+    }
     
 }

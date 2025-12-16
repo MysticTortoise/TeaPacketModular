@@ -1,5 +1,7 @@
 #include "TeaPacket/System/System.hpp"
 
+#include "TeaPacket/Window/PlatformWindow.hpp"
+
 using namespace TeaPacket;
 
 #include "TeaPacket/Window/Window.hpp"
@@ -24,3 +26,9 @@ void System::ProcessSystem()
         window->ProcessEvents();
     }
 }
+
+bool System::ShouldRun()
+{
+    return !PlatformWindow::shouldQuit;
+}
+

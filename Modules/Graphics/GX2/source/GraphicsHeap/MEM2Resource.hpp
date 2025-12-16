@@ -57,7 +57,58 @@ namespace TeaPacket::GX2
             return *data;
         }
 
-        T* get() const
+        [[nodiscard]] T* get() const
+        {
+            return data;
+        }
+
+        explicit operator bool() const
+        {
+            return data != nullptr;
+        }
+        
+    };
+
+    template<>
+    class MEM2Resource<void>
+    {
+    private:
+        void* data = nullptr;
+        int alignment = 0;
+        size_t size = 0;
+        bool Allocate()
+        {
+            data = MEMAllocFromDefaultHeapEx(size, alignment);
+            return data == nullptr;
+        }
+    public:
+        
+        
+        // No Copy
+        MEM2Resource& operator=(const MEM2Resource&) = delete;
+        MEM2Resource(const MEM2Resource&) = delete;
+        
+        // Constructors
+        MEM2Resource() = default;
+        explicit MEM2Resource(const int alignment, const size_t size):alignment(alignment), size(size)
+        {
+            Allocate();
+        }
+
+        ~MEM2Resource()
+        {
+            if (data == nullptr){ return; }
+            MEMFreeToDefaultHeap(data);
+        }
+
+        MEM2Resource(MEM2Resource&& other) noexcept
+        {
+            std::swap(alignment, other.alignment);
+            std::swap(data, other.data);
+            std::swap(size, other.size);
+        }
+
+        [[nodiscard]] void* get() const
         {
             return data;
         }

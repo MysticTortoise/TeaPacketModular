@@ -89,6 +89,11 @@ void Display::PresentAll()
     }
 }
 
+void Display::WaitForVSync()
+{
+    
+}
+
 Display::~Display() = default;
 
 void Display::DeInitialize()

@@ -14,7 +14,8 @@ static LRESULT WindowProc(const HWND hWnd, const UINT message, const WPARAM wPar
     case WM_DESTROY:
     case WM_QUIT:
         PostQuitMessage(0);
-        TeaPacket::System::isRunning = false;
+        // TODO: multiple windows on closing can be closed individually
+        PlatformWindow::shouldQuit = true;
         return 0;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

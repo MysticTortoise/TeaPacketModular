@@ -10,5 +10,6 @@ TP_AM_BuildAssets(
         SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/assets/" 
         DESTINATION "${CMAKE_CURRENT_BINARY_DIR}"
         ASSET_PLATFORM "STDFile"
+        PARSER_DIRS "${TEAPACKET_ROOT}/Modules/Graphics/Direct3D11/AssetMixer/Parsers/"
         )
 set_target_properties(TeaPacket_TestPrograms_Graphics2 PROPERTIES CXX_STANDARD 20)

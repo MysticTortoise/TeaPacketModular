@@ -34,9 +34,9 @@ namespace TeaPacket
 
         // ITERATORS
         T* begin() { return data; }
-        T* end() { return &data[size-1]; }
+        T* end() { return &data[size]; }
         T const* begin() const { return data; }
-        T const* end() const { return &data[size-1]; }
+        T const* end() const { return &data[size]; }
     };
 
     /// @brief Template override for a void BorrowedFixedArray.

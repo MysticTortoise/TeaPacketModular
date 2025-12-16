@@ -1,12 +1,9 @@
 #pragma once
 #include <cstdint>
 #include <optional>
-#include "TeaPacket/Types/Memory/BorrowedFixedArray.hpp"
 
-namespace TeaPacket
-{
-    enum class PrimitiveType : unsigned char;
-}
+#include "TeaPacket/Types/Enums/PrimitiveTypes.hpp"
+#include "TeaPacket/Types/Memory/BorrowedFixedArray.hpp"
 
 namespace TeaPacket::Graphics
 {
@@ -18,6 +15,12 @@ namespace TeaPacket::Graphics
         /// @brief The size of the vector this attribute is.
         /// @details As an example, a type of PrimitiveType::Float with a size of 4 would represent a vec4/float4.
         uint16_t size;
+
+
+        [[nodiscard]] constexpr size_t SizeOf() const
+        {
+            return SizeOfPrimitiveType(type) * size;
+        }
     };
 
     /// All the flags a mesh uses, grouped for packing purposes.
