@@ -9,7 +9,6 @@
 #include <gx2r/draw.h>
 
 #include "TeaPacket/Logging/Logging.hpp"
-#include "TeaPacket/Types/Enums/PrimitiveTypes.hpp"
 
 using namespace TeaPacket::Graphics;
 
@@ -23,14 +22,14 @@ Mesh::Mesh(const MeshParameters& parameters):
     size_t vertexSize = 0;
     for (const auto& vertInfo : vertexDataInfo)
     {
-        vertexSize += vertInfo.SizeOf();
+        vertexSize += vertInfo.GetSize();
     }
     const size_t vertexCount = parameters.vertexData.size / vertexSize;
     size_t paramOffset = 0;
     
     for (const auto& vertInfo : vertexDataInfo)
     {
-        size_t sizeOfElem = vertInfo.SizeOf();
+        size_t sizeOfElem = vertInfo.GetSize();
         GX2RBuffer& buffer = platformMesh->buffers.emplace_back(GX2RBuffer{
             .flags = GX2R_RESOURCE_BIND_VERTEX_BUFFER | GX2R_RESOURCE_USAGE_CPU_WRITE | GX2R_RESOURCE_USAGE_GPU_READ,
             .elemSize = sizeOfElem,

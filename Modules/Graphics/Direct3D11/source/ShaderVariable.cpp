@@ -6,7 +6,7 @@
 
 using namespace TeaPacket::Graphics;
 
-constexpr size_t ShaderVariableType::GetSize() const
+size_t ShaderVariableType::GetSize() const
 {
     switch (this->baseType)
     {

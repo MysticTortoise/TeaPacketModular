@@ -4,9 +4,9 @@
 
 namespace TeaPacket::Graphics
 {
-    struct VertexDataInfo;
     struct MeshParameters;
     struct PlatformMesh;
+    struct ShaderVariableType;
 
     /// @brief Represents a reusable piece of geometry.
     /// @details A mesh represents only geometry, specifically a set of vertices and optionally a set of faces.
@@ -26,7 +26,7 @@ namespace TeaPacket::Graphics
 
     private:
         /// A list describing how the vertices of this mesh are interpreted.
-        std::vector<VertexDataInfo> vertexDataInfo;
+        std::vector<ShaderVariableType> vertexDataInfo;
         
     public:
         /// Constructs a mesh via parameters.

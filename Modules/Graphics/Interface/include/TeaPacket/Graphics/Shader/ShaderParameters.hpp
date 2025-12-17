@@ -3,10 +3,6 @@
 
 #include "TeaPacket/Graphics/Shader/ShaderVariable.hpp"
 
-namespace TeaPacket
-{
-    enum class PrimitiveType : unsigned char;
-}
 
 namespace TeaPacket::Graphics
 {

@@ -7,7 +7,6 @@
 #include "TeaPacket/Graphics/WindowsGraphics.hpp"
 #include "TeaPacket/Graphics/Mesh/MeshParameters.hpp"
 #include "TeaPacket/MacroUtils/WindowsSpecific.hpp"
-#include "TeaPacket/Types/Enums/PrimitiveTypes.hpp"
 
 using namespace TeaPacket::Graphics;
 
@@ -17,9 +16,9 @@ Mesh::Mesh(const MeshParameters& parameters):
     hasIndex(parameters.flags.useIndices)
 {
     size_t vertexSize = 0;
-    for (const VertexDataInfo& vertexData : parameters.vertexInfo)
+    for (const ShaderVariableType& vertexData : parameters.vertexInfo)
     {
-        vertexSize += SizeOfPrimitiveType(vertexData.type) * vertexData.size;
+        vertexSize += vertexData.GetSize();
     }
     platformMesh->vertexSize = static_cast<UINT>(vertexSize);
 

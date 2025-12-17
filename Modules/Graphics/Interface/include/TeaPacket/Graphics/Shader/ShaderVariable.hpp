@@ -29,7 +29,7 @@ namespace TeaPacket::Graphics
         constexpr ShaderVariableType(const ShaderVariableBaseType type, const unsigned char amount) : baseType(type), amount(amount){}
 
         /// Gets the GPU size of this ShaderVariableType.
-        [[nodiscard]] constexpr size_t GetSize() const;
+        [[nodiscard]] size_t GetSize() const;
     };
     
 }

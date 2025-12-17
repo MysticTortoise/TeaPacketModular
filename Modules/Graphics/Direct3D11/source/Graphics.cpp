@@ -43,6 +43,21 @@ void Graphics::Initialize()
             deviceContext.ReleaseAndGetAddressOf()
         )
     );
+
+    constexpr auto desc = D3D11_RASTERIZER_DESC{
+        .FillMode = D3D11_FILL_SOLID,
+        .CullMode = D3D11_CULL_NONE,
+        .FrontCounterClockwise = FALSE,
+        .DepthBias = 0,
+        .DepthBiasClamp = 0.0f,
+        .SlopeScaledDepthBias = 0.0f,
+        .DepthClipEnable = TRUE,
+        .ScissorEnable = FALSE,
+        .MultisampleEnable = FALSE,
+        .AntialiasedLineEnable = FALSE
+    };
+    CheckErrorWinCom(device->CreateRasterizerState(&desc, defaultRasterizerState.GetAddressOf()));
+    deviceContext->RSSetState(defaultRasterizerState.Get());
 }
 
 void Graphics::DeInitialize()

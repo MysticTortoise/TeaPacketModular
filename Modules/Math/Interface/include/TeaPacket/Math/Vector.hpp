@@ -159,3 +159,4 @@ TP_VECTOR_TYPE_GEN_SOLO(vecsize, unsigned long, ul) \
 TP_VECTOR_TYPE_GEN_SOLO(vecsize, long long, ll) \
 TP_VECTOR_TYPE_GEN_SOLO(vecsize, signed long long, sll) \
 TP_VECTOR_TYPE_GEN_SOLO(vecsize, unsigned long long, ull)
+

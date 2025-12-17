@@ -1,6 +1,3 @@
-#include <iostream>
-
-#include "TeaPacket/Window/Window.hpp"
 #include "TeaPacket/Graphics/Display.hpp"
 #include "TeaPacket/Graphics/DisplayParameters.hpp"
 #include "TeaPacket/Graphics/Graphics.hpp"
@@ -10,28 +7,56 @@
 #include "TeaPacket/Graphics/Shader/ShaderParameters.hpp"
 #include "TeaPacket/Graphics/Texture/TextureData.hpp"
 #include "TeaPacket/System/System.hpp"
-#include "TeaPacket/Types/Enums/PrimitiveTypes.hpp"
 #include "TeaPacket/Assets/ReadAsset.hpp"
 #include "TeaPacket/Graphics/Texture/TextureParameters.hpp"
+#include "TeaPacket/Graphics/Shader/ShaderVariable.hpp"
 
 #include "TeaPacket/Core/Core.hpp"
 
+// Graphics Test Progress Stages
+#define GTP_Initializable 0
+#define GTP_CreateDisplays 1
+#define GTP_PresentDisplays 2
+#define GTP_ClearColor 3
+#define GTP_ShadersAndMesh 4
+#define GTP_Textures 5
+#define GTP_Uniforms 6
+
+#define GTP_STAGE GTP_ShadersAndMesh
+
 using namespace TeaPacket;
-using namespace TeaPacket::Window;
 using namespace TeaPacket::Graphics;
 
+// Vertex Data W/O UV data
+#if GTP_STAGE >= GTP_ShadersAndMesh && GTP_STAGE < GTP_Textures
 constexpr float vertData[] = {
-    -1.0f, 1.0f, 0.0f, 0.0f, 
-     1.0f, 1.0f, 2.0f, 0.0f,
-    -1.0f,-1.0f, 0.0f, 2.0f,
-     1.0f,-1.0f, 2.0f, 2.0f
+    -0.5f, 0.5f,
+     0.5f, 0.5f,
+    -0.5f,-0.5f,
+     0.5f,-0.5f
 };
+#endif
 
+// Vertex Data WITH UV Data
+#if GTP_STAGE >= GTP_Textures
+constexpr float vertData[] = {
+    -0.5f, 0.5f, 0.0f, 0.0f, 
+     0.5f, 0.5f, 2.0f, 0.0f,
+    -0.5f,-0.5f, 0.0f, 2.0f,
+     0.5f,-0.5f, 2.0f, 2.0f
+};
+#endif
+
+// Face Data
+#if GTP_STAGE >= GTP_ShadersAndMesh
 unsigned long faceData[] = {
     0, 1, 2,
     1, 3, 2
 };
+#endif
 
+// Texture Data
+#if GTP_STAGE >= GTP_Textures
 unsigned char texData[] = {
     255, 0, 0, 255,
     0, 255, 0, 255,
@@ -43,19 +68,33 @@ unsigned char texData[] = {
     128, 128, 128, 255,
     255, 255, 255, 255
 };
+#endif
 
-[[noreturn]] int main()
+int main()
 {
     TeaPacket::Initialize();
+#if GTP_STAGE >= GTP_CreateDisplays
     auto dispParams = DisplayParameters{.width = 1280, .height = 720};
     Display::InitializeDefaultDisplays({dispParams});
-    Viewport* viewport = Display::GetDisplay(0)->GetViewport();
+#endif
+    
+#if GTP_STAGE >= GTP_ShadersAndMesh
 
-    auto vertInfo = std::vector<VertexDataInfo>(2);
-    vertInfo[0].size = 2;
-    vertInfo[0].type = PrimitiveType::Float;
-    vertInfo[1].size = 2;
-    vertInfo[1].type = PrimitiveType::Float;
+#if GTP_STAGE < GTP_Textures
+    constexpr int shaderAttribCount = 1;
+#else
+    constexpr int shaderAttribCount = 2;
+#endif
+    
+    
+    auto vertInfo = std::vector<ShaderVariableType>(shaderAttribCount);
+    vertInfo[0].amount = 2;
+    vertInfo[0].baseType = ShaderVariableBaseType::Float;
+#if GTP_STAGE >= GTP_Textures
+    vertInfo[1].amount = 2;
+    vertInfo[1].baseType = ShaderVariableBaseType::Float;
+#endif
+    
     
     const auto meshParms = MeshParameters{
         .flags = MeshFlags{.useIndices = true},
@@ -65,23 +104,32 @@ unsigned char texData[] = {
     };
     auto mesh = Mesh(meshParms);
 
-    auto inputAttrs = std::vector<ShaderVariableType>(2);
-    inputAttrs[0].baseType = ShaderVariableBaseType::Float;
-    inputAttrs[0].amount = 2;
-    inputAttrs[1].baseType = ShaderVariableBaseType::Float;
-    inputAttrs[1].amount = 2;
-    
+#if GTP_STAGE < GTP_Textures
     const auto shaderParms = ShaderParameters{
         .flags = {},
-        .vertexShaderCode = Assets::ReadTextFile("test.vert"),
-        .fragmentShaderCode = Assets::ReadTextFile("test.frag"),
-        .inputAttributes = inputAttrs,
+        .vertexShaderCode = Assets::ReadTextFile("color.vert"),
+        .fragmentShaderCode = Assets::ReadTextFile("color.frag"),
+        .inputAttributes = vertInfo,
         .uniformBufferSizes = {16}
     };
+#else
+    const auto shaderParms = ShaderParameters{
+        .flags = {},
+        .vertexShaderCode = Assets::ReadTextFile("textured.vert"),
+        .fragmentShaderCode = Assets::ReadTextFile("textured.frag"),
+        .inputAttributes = vertInfo,
+        .uniformBufferSizes = {16}
+    };
+#endif
+    
     auto shader = Shader(shaderParms);
+#endif
+#if GTP_STAGE >= GTP_Uniforms
     constexpr float data[] = {0, 1, 0, 1};
     shader.SendUniformBuffer((unsigned char*)data, 0);
-
+#endif
+    
+#if GTP_STAGE >= GTP_Textures
     constexpr auto texParms = TextureParameters{
         .data = texData,
         .width = 3,
@@ -99,19 +147,29 @@ unsigned char texData[] = {
     };
     auto tex = Texture(texParms);
     tex.SetActive(1);
+#endif
     
-    while (System::isRunning)
+    
+    while (System::ShouldRun())
     {
         System::ProcessSystem();
-        viewport->BeginRender();
-        Viewport::ClearColor(255, 0, 0);
+#if GTP_STAGE >= GTP_PresentDisplays
+        Display::BeginRender(0);
+#if GTP_STAGE >= GTP_ClearColor
+        static unsigned int i = 0;
+        i = (i+1)%255;
+        Viewport::ClearColor(static_cast<unsigned char>(i), 0, 0);
+#endif
 
+#if GTP_STAGE >= GTP_ShadersAndMesh
         mesh.SetActive();
         shader.SetActive();
         DrawMesh();
+#endif
         
-        viewport->FinishRender();
+        Display::FinishRender(0);
         Display::PresentAll();
+#endif
     }
     TeaPacket::DeInitialize();
 }
