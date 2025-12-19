@@ -10,5 +10,6 @@ var searchData=
   ['shader_7',['Shader',['../classTeaPacket_1_1Graphics_1_1Shader.html#a44e774bf120f314b4a5b0e22dd7fbc49',1,'TeaPacket::Graphics::Shader']]],
   ['shadervariabletype_8',['ShaderVariableType',['../structTeaPacket_1_1Graphics_1_1ShaderVariableType.html#a6d4d7c348ee964df2deed56f3c69e07d',1,'TeaPacket::Graphics::ShaderVariableType::ShaderVariableType()'],['../structTeaPacket_1_1Graphics_1_1ShaderVariableType.html#a5a3b4cb0b72a540424a48f90aa81aaee',1,'TeaPacket::Graphics::ShaderVariableType::ShaderVariableType(const ShaderVariableBaseType type, const unsigned char amount)']]],
   ['shouldrun_9',['ShouldRun',['../namespaceTeaPacket_1_1System.html#a5c02733fbbac878707059ced26395b1f',1,'TeaPacket::System']]],
-  ['sizeof_10',['SizeOf',['../classTeaPacket_1_1BorrowedFixedArray.html#ae11b6a3a2be4243811e11455d3d85e2a',1,'TeaPacket::BorrowedFixedArray::SizeOf()'],['../classTeaPacket_1_1BorrowedFixedArray.html#ae11b6a3a2be4243811e11455d3d85e2a',1,'TeaPacket::BorrowedFixedArray&lt; void &gt;::SizeOf()']]]
+  ['sizeof_10',['SizeOf',['../classTeaPacket_1_1BorrowedFixedArray.html#ae11b6a3a2be4243811e11455d3d85e2a',1,'TeaPacket::BorrowedFixedArray::SizeOf()'],['../classTeaPacket_1_1BorrowedFixedArray.html#ae11b6a3a2be4243811e11455d3d85e2a',1,'TeaPacket::BorrowedFixedArray&lt; void &gt;::SizeOf()']]],
+  ['swapifneeded_11',['SwapIfNeeded',['../classTeaPacket_1_1Graphics_1_1UniformBuffer.html#affe62753a9641719da1e4a8dc22d637c',1,'TeaPacket::Graphics::UniformBuffer']]]
 ];
