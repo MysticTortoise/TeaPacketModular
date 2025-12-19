@@ -154,8 +154,6 @@ ownedDisplay(parameters.ownedDisplay)
     platformViewport->depthBuffer.surface.image = platformViewport->depthBufferImage.data;
 }
 
-//static bool isRendering;
-
 void Viewport::BeginRender()
 {
     GX2SetColorBuffer(&platformViewport->colorBuffer, GX2_RENDER_TARGET_0);

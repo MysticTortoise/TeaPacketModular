@@ -25,7 +25,5 @@ namespace TeaPacket::Graphics
         const std::string&fragmentShaderCode;
         /// A list describing the vertex inputs this shader takes.
         std::vector<ShaderVariableType>& inputAttributes;
-        /// A list of Uniform Buffer sizes this shader uses.
-        std::vector<size_t> uniformBufferSizes;
     };
 }

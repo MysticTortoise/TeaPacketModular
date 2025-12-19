@@ -55,8 +55,7 @@ static constexpr DXGI_FORMAT GetDXGIFormatFromVertexAttribute(ShaderVariableType
 }
 
 Shader::Shader(const ShaderParameters& parameters):
-platformShader(std::make_unique<PlatformShader>()),
-uniformBufferSizes(parameters.uniformBufferSizes)
+platformShader(std::make_unique<PlatformShader>())
 {
     Microsoft::WRL::ComPtr<ID3D10Blob> errorMessage, vertexShaderBuffer;
     // Compile Vertex Shader
@@ -137,32 +136,6 @@ uniformBufferSizes(parameters.uniformBufferSizes)
             platformShader->inputLayout.GetAddressOf()
             ));
 
-    // Setup CBuffers
-    auto cbufferDesc = D3D11_BUFFER_DESC();
-    platformShader->cbuffers.resize(parameters.uniformBufferSizes.size());
-    auto initData = D3D11_SUBRESOURCE_DATA();
-    initData.SysMemPitch = 0;
-    initData.SysMemSlicePitch = 0;
-
-    for (size_t i = 0; i < parameters.uniformBufferSizes.size(); i++)
-    {
-        cbufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-        cbufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-        cbufferDesc.ByteWidth = static_cast<UINT>(parameters.uniformBufferSizes[i]);
-        cbufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-        cbufferDesc.MiscFlags = 0;
-        cbufferDesc.StructureByteStride = 0;
-
-        const auto* zeroData = new unsigned char[parameters.uniformBufferSizes[i]]();
-        initData.pSysMem = zeroData;
-
-        CheckErrorWinCom(
-            device->CreateBuffer(&cbufferDesc, &initData, platformShader->cbuffers[i].GetAddressOf())
-            );
-        delete[] zeroData;
-        initData.pSysMem = nullptr;
-    }
-
     
 }
 void Shader::SetActive()
@@ -172,24 +145,6 @@ void Shader::SetActive()
     deviceContext->PSSetShader(platformShader->pixelShader.Get(), NULL, 0);
 
     // Add Uniform support later
-}
-
-void Shader::SendUniformBuffer(const unsigned char* data, const size_t bufferIndex)
-{
-    ID3D11Buffer* bufferPtr = platformShader->cbuffers[bufferIndex].Get();
-    D3D11_MAPPED_SUBRESOURCE mappedResource;
-    CheckErrorWinCom(deviceContext->Map(
-        bufferPtr,
-        0,
-        D3D11_MAP_WRITE_DISCARD,
-        0,
-        &mappedResource));
-
-    memcpy(mappedResource.pData, data, uniformBufferSizes[bufferIndex]);
-    deviceContext->Unmap(bufferPtr, 0);
-
-    deviceContext->VSSetConstantBuffers(static_cast<UINT>(bufferIndex), 1, &bufferPtr);
-    deviceContext->PSSetConstantBuffers(static_cast<UINT>(bufferIndex), 1, &bufferPtr);
 }
 
 

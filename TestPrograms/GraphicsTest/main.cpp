@@ -12,6 +12,8 @@
 #include "TeaPacket/Graphics/Shader/ShaderVariable.hpp"
 
 #include "TeaPacket/Core/Core.hpp"
+#include "TeaPacket/Graphics/UniformBuffer.hpp"
+#include "TeaPacket/Graphics/UniformBufferParameters.hpp"
 
 // Graphics Test Progress Stages
 #define GTP_Initializable 0
@@ -22,7 +24,7 @@
 #define GTP_Textures 5
 #define GTP_Uniforms 6
 
-#define GTP_STAGE GTP_Textures
+#define GTP_STAGE GTP_Uniforms
 
 using namespace TeaPacket;
 using namespace TeaPacket::Graphics;
@@ -118,15 +120,23 @@ int main()
         .vertexShaderCode = Assets::ReadTextFile("textured.vert"),
         .fragmentShaderCode = Assets::ReadTextFile("textured.frag"),
         .inputAttributes = vertInfo,
-        .uniformBufferSizes = {16}
     };
 #endif
     
     auto shader = Shader(shaderParms);
 #endif
 #if GTP_STAGE >= GTP_Uniforms
-    constexpr float data[] = {0, 1, 0, 1};
-    shader.SendUniformBuffer((unsigned char*)data, 0);
+    // WII U SPECIFIC
+    // TODO: BufferHandler extension
+    constexpr uint32_t data1[] = {32831,32831,32831,32831};
+    constexpr float data2[] = {0,0,0,0};
+    const auto uniBufferParms = UniformBufferParameters{
+        .data = (void*)data1,
+        .size = sizeof(data1)
+    };
+    UniformBuffer uniformBuffer(uniBufferParms);
+    uniformBuffer.SetActive(0);
+    
 #endif
     
 #if GTP_STAGE >= GTP_Textures
@@ -164,6 +174,13 @@ int main()
 #if GTP_STAGE >= GTP_ShadersAndMesh
         mesh.SetActive();
         shader.SetActive();
+        if (i > 100)
+        {
+            uniformBuffer.SendData(data2);
+        } else
+        {
+            uniformBuffer.SendData(data1);
+        }
         DrawMesh();
 #endif
         

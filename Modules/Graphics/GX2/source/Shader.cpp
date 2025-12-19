@@ -24,8 +24,7 @@ platformShader(std::make_unique<PlatformShader>(PlatformShader{
             GX2_FETCH_SHADER_TESSELLATION_NONE,
             GX2_TESSELLATION_MODE_DISCRETE
         ))
-})),
-uniformBufferSizes(parameters.uniformBufferSizes)
+}))
 {
     // Compile vert shader
     char infoLog[1024];
@@ -91,6 +90,7 @@ void Shader::SetActive()
     GX2SetFetchShader(&platformShader->fetchShader);
     GX2SetVertexShader(platformShader->vertexShader.get());
     GX2SetPixelShader(platformShader->pixelShader.get());
+    GX2SetShaderMode(GX2_SHADER_MODE_UNIFORM_BLOCK);
     activeShader = this;
 }
 

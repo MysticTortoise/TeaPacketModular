@@ -12,5 +12,5 @@ layout(binding = 1) uniform sampler2D u_tex;
 
 void main()
 {
-    o_color = texture(u_tex, i_uv);
+    o_color = texture(u_tex, i_uv) + u_color;
 }
