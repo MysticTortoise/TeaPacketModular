@@ -5,7 +5,13 @@
 #include <gx2/mem.h>
 #include <gx2/utils.h>
 
+#include "CafeGLSL/CafeGLSLCompiler.hpp"
+#include "GraphicsHeap/MEM2Resource.hpp"
 #include "TeaPacket/Graphics/Texture/TextureParameters.hpp"
+#include "TeaPacket/Graphics/GX2/GX2TextureFormat.gen"
+#include "TeaPacket/Graphics/GX2/GX2TextureWrap.gen"
+#include "TeaPacket/Graphics/GX2/GX2TextureFilter.gen"
+#include "TeaPacket/Graphics/Shader/Shader.hpp"
 
 using namespace TeaPacket::Graphics;
 
@@ -18,14 +24,14 @@ platformTexture(std::make_unique<PlatformTexture>(PlatformTexture{
             .height = parameters.height,
             .depth = 1,
             .mipLevels = 1,
-            .format = GX2_SURFACE_FORMAT_UNORM_R8_G8_B8_A8,
+            .format = TextureFormatToGX2(parameters.format),
             .aa = GX2_AA_MODE1X,
-            .use = GX2_SURFACE_USE_NONE,
+            .use = GX2_SURFACE_USE_TEXTURE,
             .imageSize = 0,
             .image = nullptr,
             .mipmapSize = 0,
             .mipmaps = nullptr,
-            .tileMode = GX2_TILE_MODE_DEFAULT,
+            .tileMode = GX2_TILE_MODE_LINEAR_ALIGNED,
             .swizzle = 0,
             .alignment = 0,
             .pitch = 0,
@@ -38,6 +44,7 @@ platformTexture(std::make_unique<PlatformTexture>(PlatformTexture{
         .compMap = GX2_COMP_MAP(GX2_SQ_SEL_R, GX2_SQ_SEL_G, GX2_SQ_SEL_B, GX2_SQ_SEL_A),
         .regs = {}
     },
+    .gx2Sampler = GX2Sampler{},
 
     .isPartOfViewport = parameters.useFlags.renderTargetColor || parameters.useFlags.renderTargetDepth
 })),
@@ -49,6 +56,42 @@ format(parameters.format)
     {
         return; // This texture is purely dummy
     }
+    GX2CalcSurfaceSizeAndAlignment(&platformTexture->gx2Texture.surface);
+    GX2InitTextureRegs(&platformTexture->gx2Texture);
+
+    if (parameters.useFlags.shaderResource)
+    {
+        GX2InitSampler(
+            &platformTexture->gx2Sampler,
+            TextureWrapModeToGX2(parameters.wrapMode),
+            TextureFilterModeToGX2(parameters.filterMode));
+    }
+
+    if (parameters.data != nullptr)
+    {
+        platformTexture->gx2Texture.surface.image = MEMAllocFromDefaultHeapEx(
+            platformTexture->gx2Texture.surface.imageSize,
+            static_cast<int>(platformTexture->gx2Texture.surface.alignment));
+        auto* toPtr = static_cast<unsigned char*>(platformTexture->gx2Texture.surface.image);
+        const auto* fromPtr = static_cast<unsigned char*>(parameters.data);
+        
+        const uint32_t pitch    = GetTextureFormatBytesPerPixel(format) * platformTexture->gx2Texture.surface.pitch;
+        const uint32_t srcPitch = GetTextureFormatBytesPerPixel(format) * width;
+        
+        for (uint32_t i = 0; i < height; i++)
+        {
+            memcpy(toPtr, fromPtr, srcPitch);
+            toPtr += pitch;
+            fromPtr += srcPitch;
+        }
+    }
 }
+
+void Texture::SetActive(const uint8_t index)
+{
+    GX2SetPixelTexture(&platformTexture->gx2Texture, index);
+    GX2SetPixelSampler(&platformTexture->gx2Sampler, index);
+}
+
 
 Texture::~Texture() = default;

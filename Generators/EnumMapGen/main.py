@@ -96,7 +96,7 @@ def generate(file):
                 for i in range(len(enum_map)):
                     genfile.write("case " + enum_map[i][this_index] + ": return " + enum_map[i][other_index] + ";\n")
                 
-                genfile.write("default: throw std::exception(\"" + error_message + "\");\n")
+                genfile.write("default: throw std::runtime_error(\"" + error_message + "\");\n")
 
                 genfile.write(" }\n")
                 genfile.write("}\n")

@@ -22,7 +22,7 @@
 #define GTP_Textures 5
 #define GTP_Uniforms 6
 
-#define GTP_STAGE GTP_ShadersAndMesh
+#define GTP_STAGE GTP_Textures
 
 using namespace TeaPacket;
 using namespace TeaPacket::Graphics;
@@ -40,10 +40,10 @@ constexpr float vertData[] = {
 // Vertex Data WITH UV Data
 #if GTP_STAGE >= GTP_Textures
 constexpr float vertData[] = {
-    -0.5f, 0.5f, 0.0f, 0.0f, 
-     0.5f, 0.5f, 2.0f, 0.0f,
-    -0.5f,-0.5f, 0.0f, 2.0f,
-     0.5f,-0.5f, 2.0f, 2.0f
+    -0.5f, 0.5f, 0.0f, 1.0f, 
+     0.5f, 0.5f, 1.0f, 1.0f,
+    -0.5f,-0.5f, 0.0f, 0.0f,
+     0.5f,-0.5f, 1.0f, 0.0f
 };
 #endif
 
@@ -58,15 +58,15 @@ unsigned long faceData[] = {
 // Texture Data
 #if GTP_STAGE >= GTP_Textures
 unsigned char texData[] = {
-    255, 0, 0, 255,
-    0, 255, 0, 255,
-    0, 0, 255, 255,
-    255, 255, 0, 255,
-    0, 255, 255, 255,
-    255, 0, 255, 255,
-    0, 0, 0, 255,
-    128, 128, 128, 255,
-    255, 255, 255, 255
+    255, 0, 0, 255, //red
+    0, 255, 0, 255, //green
+    0, 0, 255, 255, //blue
+    255, 255, 0, 255, //yellow
+    0, 255, 255, 255, // cyan
+    255, 0, 255, 255, // magenta
+    0, 0, 0, 255, // black
+    128, 128, 128, 255, // grey
+    255, 255, 255, 255 // white
 };
 #endif
 

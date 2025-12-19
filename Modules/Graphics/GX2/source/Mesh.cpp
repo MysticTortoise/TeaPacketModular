@@ -59,7 +59,6 @@ Mesh::Mesh(const MeshParameters& parameters):
         for (const unsigned long index : parameters.indices.value())
         {
             platformMesh->indexBuffer.emplace_back(static_cast<uint32_t>(index));
-            Log(index);
         }
         platformMesh->indexCount = parameters.indices.value().size;
         //Log(platformMesh->indexCount);

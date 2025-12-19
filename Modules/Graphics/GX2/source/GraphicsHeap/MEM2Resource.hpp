@@ -4,8 +4,6 @@
 #include <functional>
 #include <coreinit/memdefaultheap.h>
 
-#include "../../../../Logging/Interface/include/TeaPacket/Logging/Logging.hpp"
-
 namespace TeaPacket::GX2
 {
     template<typename T>

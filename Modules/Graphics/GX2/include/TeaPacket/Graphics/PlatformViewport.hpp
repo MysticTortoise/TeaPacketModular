@@ -12,7 +12,5 @@ namespace TeaPacket::Graphics
         
         GX2DepthBuffer depthBuffer;
         GX2::DisposableForegroundMemResource depthBufferImage;
-
-        GX2::MEM2Resource<GX2ContextState> contextState;
     };
 }

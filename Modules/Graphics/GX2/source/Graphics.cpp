@@ -9,6 +9,7 @@
 #include <gx2/shaders.h>
 #include <gx2/state.h>
 #include <coreinit/memdefaultheap.h>
+#include <gx2/context.h>
 #include <gx2/draw.h>
 #include <gx2/registers.h>
 
@@ -17,6 +18,7 @@
 #include "TeaPacket/Logging/Logging.hpp"
 
 #include "CafeGLSL/CafeGLSLCompiler.hpp"
+#include "GraphicsHeap/MEM2Resource.hpp"
 #include "TeaPacket/Graphics/Mesh/Mesh.hpp"
 
 #define WHB_GFX_COMMAND_BUFFER_POOL_SIZE (0x400000)
@@ -28,6 +30,8 @@ static void* commandBufferPool = nullptr;
 
 // I almost guarantee you there is a memory leak, or otherwise bad memory issue somewhere in this code.
 // Unfortunately, I don't know where! HAHA!
+
+static MEM2Resource<GX2ContextState> contextState(GX2_CONTEXT_STATE_ALIGNMENT);
 
 void Graphics::Initialize()
 {
@@ -63,6 +67,10 @@ void Graphics::Initialize()
         FALSE,
         FALSE
         );
+
+    assert(contextState);
+    GX2SetupContextStateEx(contextState.get(), TRUE);
+    GX2SetContextState(contextState.get());
     
 }
 

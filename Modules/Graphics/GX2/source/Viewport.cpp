@@ -88,8 +88,6 @@ platformViewport(std::make_unique<PlatformViewport>(PlatformViewport{
         .regs = {}
     },
     .depthBufferImage = DisposableForegroundMemResource(),
-    
-    .contextState = MEM2Resource<GX2ContextState>(GX2_CONTEXT_STATE_ALIGNMENT),
 })),
 
 colorTexture(TextureParameters{
@@ -154,22 +152,16 @@ ownedDisplay(parameters.ownedDisplay)
         throw std::runtime_error("failed to allocate depth buffer");
     }
     platformViewport->depthBuffer.surface.image = platformViewport->depthBufferImage.data;
-
-    // Init Context State
-    assert(platformViewport->contextState);
-    GX2SetupContextStateEx(platformViewport->contextState.get(), TRUE);
-    GX2SetContextState(platformViewport->contextState.get());
-    GX2SetColorBuffer(&platformViewport->colorBuffer, GX2_RENDER_TARGET_0);
-    GX2SetDepthBuffer(&platformViewport->depthBuffer);
-    GX2SetViewport(0, 0,parameters.width,parameters.height,0.0f, 1.0f);
-    GX2SetScissor(0, 0, parameters.width, parameters.height);
 }
 
 //static bool isRendering;
 
 void Viewport::BeginRender()
 {
-    GX2SetContextState(platformViewport->contextState.get());
+    GX2SetColorBuffer(&platformViewport->colorBuffer, GX2_RENDER_TARGET_0);
+    GX2SetDepthBuffer(&platformViewport->depthBuffer);
+    GX2SetViewport(0, 0,GetWidth(),GetHeight(),0.0f, 1.0f);
+    GX2SetScissor(0, 0, GetWidth(),GetHeight());
     activeViewport = this;
 }
 

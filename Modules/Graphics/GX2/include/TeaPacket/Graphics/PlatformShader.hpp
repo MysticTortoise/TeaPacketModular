@@ -2,6 +2,8 @@
 
 #include "GraphicsHeap/MEM2Resource.hpp"
 
+#include <gx2/shaders.h>
+
 namespace TeaPacket::Graphics
 {
     struct PlatformShader
