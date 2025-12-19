@@ -59,6 +59,6 @@ void UniformBuffer::SendData(const void* data)
     deviceContext->Unmap(bufferPtr, 0);
 }
 
-
+constexpr bool UniformBuffer::ShouldUBBeEndianSwapped = false;
 
 UniformBuffer::~UniformBuffer() = default;

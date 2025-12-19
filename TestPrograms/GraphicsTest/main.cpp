@@ -128,7 +128,13 @@ int main()
 #if GTP_STAGE >= GTP_Uniforms
     // WII U SPECIFIC
     // TODO: BufferHandler extension
-    constexpr uint32_t data1[] = {32831,32831,32831,32831};
+    float data1[] = {1,1,1,1};
+
+    for (float& val : data1)
+    {
+        UniformBuffer::SwapIfNeeded(val);
+    }
+    
     constexpr float data2[] = {0,0,0,0};
     const auto uniBufferParms = UniformBufferParameters{
         .data = (void*)data1,

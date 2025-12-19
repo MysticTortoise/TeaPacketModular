@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-
+#include "TeaPacket/Endianness/EndianSwapping.hpp"
 
 namespace TeaPacket::Graphics
 {
@@ -22,5 +22,17 @@ namespace TeaPacket::Graphics
         
         void SendData(const void* data);
         void SetActive(size_t index);
+
+    public:
+        static const bool ShouldUBBeEndianSwapped;
+        
+        template<typename T>
+        static void SwapIfNeeded(T& val)
+        {
+            if (ShouldUBBeEndianSwapped)
+            {
+                val = Endianness::Swap(val);
+            }
+        }
     };
 }

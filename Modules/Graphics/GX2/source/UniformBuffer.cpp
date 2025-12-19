@@ -37,5 +37,6 @@ void UniformBuffer::SendData(const void* data)
     GX2Invalidate(GX2_INVALIDATE_MODE_CPU | GX2_INVALIDATE_MODE_UNIFORM_BLOCK, platformBuffer->data.get(), size);
 }
 
-
 UniformBuffer::~UniformBuffer() = default;
+
+constexpr bool UniformBuffer::ShouldUBBeEndianSwapped = true;
