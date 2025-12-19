@@ -15,6 +15,8 @@ var annotated_dup =
         [ "TextureData", "classTeaPacket_1_1Graphics_1_1TextureData.html", "classTeaPacket_1_1Graphics_1_1TextureData" ],
         [ "TextureParameters", "structTeaPacket_1_1Graphics_1_1TextureParameters.html", "structTeaPacket_1_1Graphics_1_1TextureParameters" ],
         [ "TextureUseFlags", "structTeaPacket_1_1Graphics_1_1TextureUseFlags.html", "structTeaPacket_1_1Graphics_1_1TextureUseFlags" ],
+        [ "UniformBuffer", "classTeaPacket_1_1Graphics_1_1UniformBuffer.html", "classTeaPacket_1_1Graphics_1_1UniformBuffer" ],
+        [ "UniformBufferParameters", "structTeaPacket_1_1Graphics_1_1UniformBufferParameters.html", "structTeaPacket_1_1Graphics_1_1UniformBufferParameters" ],
         [ "Viewport", "classTeaPacket_1_1Graphics_1_1Viewport.html", "classTeaPacket_1_1Graphics_1_1Viewport" ],
         [ "ViewportFlags", "structTeaPacket_1_1Graphics_1_1ViewportFlags.html", "structTeaPacket_1_1Graphics_1_1ViewportFlags" ],
         [ "ViewportParameters", "structTeaPacket_1_1Graphics_1_1ViewportParameters.html", "structTeaPacket_1_1Graphics_1_1ViewportParameters" ]

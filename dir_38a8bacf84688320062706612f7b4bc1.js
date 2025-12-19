@@ -6,6 +6,8 @@ var dir_38a8bacf84688320062706612f7b4bc1 =
     [ "Display.hpp", "Display_8hpp.html", "Display_8hpp" ],
     [ "DisplayParameters.hpp", "DisplayParameters_8hpp.html", "DisplayParameters_8hpp" ],
     [ "Graphics.hpp", "Graphics_8hpp.html", "Graphics_8hpp" ],
+    [ "UniformBuffer.hpp", "UniformBuffer_8hpp.html", "UniformBuffer_8hpp" ],
+    [ "UniformBufferParameters.hpp", "UniformBufferParameters_8hpp.html", "UniformBufferParameters_8hpp" ],
     [ "Viewport.hpp", "Viewport_8hpp.html", "Viewport_8hpp" ],
     [ "ViewportParameters.hpp", "ViewportParameters_8hpp.html", "ViewportParameters_8hpp" ]
 ];
