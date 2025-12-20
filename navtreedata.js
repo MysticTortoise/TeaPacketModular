@@ -31,6 +31,8 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
         [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
@@ -58,7 +60,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BorrowedFixedArray_8hpp.html",
-"classTeaPacket_1_1Window_1_1Window.html#a14d0520994a284051b2cd4ff94799e25"
+"classTeaPacket_1_1Math_1_1Vector.html#ad47bf1df4e74d85dc302087c000e04eb",
+"structTeaPacket_1_1Graphics_1_1ViewportParameters.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

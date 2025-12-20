@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">TeaPacket<span id="projectnumber">&#160;0.0.1</span>
+   <div id="projectname">TeaPacket<span id="projectnumber">&#160;0.1.0</span>
    </div>
    <div id="projectbrief">Cross platform game engine.</div>
   </td>
@@ -100,7 +100,9 @@ $(function(){initNavTree('namespaceTeaPacket.html',''); initResizable(true); });
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">TeaPacket Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -110,15 +112,20 @@ Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1Assets.html">Assets</a></td></tr>
 <tr class="memdesc:namespaceTeaPacket_1_1Assets"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions related to reading data from the disk. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1Endianness.html">Endianness</a></td></tr>
+<tr class="memdesc:namespaceTeaPacket_1_1Endianness"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions related to <a class="el" href="namespaceTeaPacket_1_1Endianness.html" title="Functions related to Endianness and Endian Swapping.">Endianness</a> and Endian Swapping. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1Graphics.html">Graphics</a></td></tr>
 <tr class="memdesc:namespaceTeaPacket_1_1Graphics"><td class="mdescLeft">&#160;</td><td class="mdescRight">A module for rendering and presenting graphics to the user. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1Logging.html">Logging</a></td></tr>
+<tr class="memdesc:namespaceTeaPacket_1_1Logging"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions related to debugging and logging information. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1Math.html">Math</a></td></tr>
 <tr class="memdesc:namespaceTeaPacket_1_1Math"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceTeaPacket_1_1Math.html" title="Math related functions and classes for TeaPacket.">Math</a> related functions and classes for <a class="el" href="namespaceTeaPacket.html">TeaPacket</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1System.html">System</a></td></tr>
+<tr class="memdesc:namespaceTeaPacket_1_1System"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions related to base functionality of the platform. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTeaPacket_1_1Window.html">Window</a></td></tr>
 <tr class="memdesc:namespaceTeaPacket_1_1Window"><td class="mdescLeft">&#160;</td><td class="mdescRight">A module for managing windows on PC platforms. Not required but used by several backends. <br /></td></tr>
@@ -133,8 +140,27 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template override for a void <a class="el" href="classTeaPacket_1_1BorrowedFixedArray.html" title="A wrapper around a pointer to an array with information about how large the array is.">BorrowedFixedArray</a>.  <a href="classTeaPacket_1_1BorrowedFixedArray_3_01void_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a618e494c250176b83ea340844994723d" id="r_a618e494c250176b83ea340844994723d"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a618e494c250176b83ea340844994723d">TP_InitFunction</a></td></tr>
+<tr class="separator:a618e494c250176b83ea340844994723d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69b4813f378b592d26cab480ea54f038" id="r_a69b4813f378b592d26cab480ea54f038"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69b4813f378b592d26cab480ea54f038">TP_DeInitFunction</a></td></tr>
+<tr class="separator:a69b4813f378b592d26cab480ea54f038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a1a82ffee8d6b485c70fe1ef620d605d1" id="r_a1a82ffee8d6b485c70fe1ef620d605d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a82ffee8d6b485c70fe1ef620d605d1">Initialize</a> ()</td></tr>
+<tr class="memdesc:a1a82ffee8d6b485c70fe1ef620d605d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes all used <a class="el" href="namespaceTeaPacket.html">TeaPacket</a> systems.  <br /></td></tr>
+<tr class="separator:a1a82ffee8d6b485c70fe1ef620d605d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1597e0dae23f6f1aa8d12d10273a016" id="r_aa1597e0dae23f6f1aa8d12d10273a016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1597e0dae23f6f1aa8d12d10273a016">DeInitialize</a> ()</td></tr>
+<tr class="memdesc:aa1597e0dae23f6f1aa8d12d10273a016"><td class="mdescLeft">&#160;</td><td class="mdescRight">DeInitializes all used <a class="el" href="namespaceTeaPacket.html">TeaPacket</a> systems.  <br /></td></tr>
+<tr class="separator:aa1597e0dae23f6f1aa8d12d10273a016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfed8c13b415c52de7a0768b62eab6c8" id="r_adfed8c13b415c52de7a0768b62eab6c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfed8c13b415c52de7a0768b62eab6c8">HookInitFunction</a> (const <a class="el" href="#a618e494c250176b83ea340844994723d">TP_InitFunction</a> &amp;initFunction, const uint16_t priority)</td></tr>
+<tr class="memdesc:adfed8c13b415c52de7a0768b62eab6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hooks a function to be called in INIT.  <br /></td></tr>
+<tr class="separator:adfed8c13b415c52de7a0768b62eab6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b78bd1d219d91228b7b8122c493c415" id="r_a2b78bd1d219d91228b7b8122c493c415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b78bd1d219d91228b7b8122c493c415">HookDeInitFunction</a> (const <a class="el" href="#a69b4813f378b592d26cab480ea54f038">TP_DeInitFunction</a> &amp;deInitFunction, uint16_t priority)</td></tr>
+<tr class="memdesc:a2b78bd1d219d91228b7b8122c493c415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hooks a function to be called in INIT.  <br /></td></tr>
+<tr class="separator:a2b78bd1d219d91228b7b8122c493c415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d8bafe6698c43e5f85536f6accdde48" id="r_a0d8bafe6698c43e5f85536f6accdde48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d8bafe6698c43e5f85536f6accdde48">LogString</a> (const std::string &amp;msg)</td></tr>
 <tr class="memdesc:a0d8bafe6698c43e5f85536f6accdde48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a string to an implementation-defined location.  <br /></td></tr>
 <tr class="separator:a0d8bafe6698c43e5f85536f6accdde48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,8 +176,174 @@ Functions</h2></td></tr>
 <tr class="memitem:a9a7e77a1cbf5468622b429031f1a7447" id="r_a9a7e77a1cbf5468622b429031f1a7447"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
 <tr class="memitem:a9a7e77a1cbf5468622b429031f1a7447"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9a7e77a1cbf5468622b429031f1a7447">Log</a> (const char *msg)</td></tr>
 <tr class="separator:a9a7e77a1cbf5468622b429031f1a7447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a07c60ab44cb900469c9135a0b04e906a" id="r_a07c60ab44cb900469c9135a0b04e906a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07c60ab44cb900469c9135a0b04e906a">InitFunctionList</a> = std::list&lt;std::pair&lt;<a class="el" href="#a618e494c250176b83ea340844994723d">TP_InitFunction</a>, uint16_t&gt;&gt;()</td></tr>
+<tr class="separator:a07c60ab44cb900469c9135a0b04e906a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e3baabf5398e5393e8864daac79d12" id="r_af9e3baabf5398e5393e8864daac79d12"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9e3baabf5398e5393e8864daac79d12">DeInitFunctionList</a> = std::list&lt;std::pair&lt;<a class="el" href="#a69b4813f378b592d26cab480ea54f038">TP_DeInitFunction</a>, uint16_t&gt;&gt;()</td></tr>
+<tr class="separator:af9e3baabf5398e5393e8864daac79d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a69b4813f378b592d26cab480ea54f038" name="a69b4813f378b592d26cab480ea54f038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69b4813f378b592d26cab480ea54f038">&#9670;&#160;</a></span>TP_DeInitFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::function&lt;void()&gt; <a class="el" href="#a69b4813f378b592d26cab480ea54f038">TeaPacket::TP_DeInitFunction</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a618e494c250176b83ea340844994723d" name="a618e494c250176b83ea340844994723d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a618e494c250176b83ea340844994723d">&#9670;&#160;</a></span>TP_InitFunction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::function&lt;void()&gt; <a class="el" href="#a618e494c250176b83ea340844994723d">TeaPacket::TP_InitFunction</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="aa1597e0dae23f6f1aa8d12d10273a016" name="aa1597e0dae23f6f1aa8d12d10273a016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1597e0dae23f6f1aa8d12d10273a016">&#9670;&#160;</a></span>DeInitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TeaPacket::DeInitialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DeInitializes all used <a class="el" href="namespaceTeaPacket.html">TeaPacket</a> systems. </p>
+
+</div>
+</div>
+<a id="a2b78bd1d219d91228b7b8122c493c415" name="a2b78bd1d219d91228b7b8122c493c415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b78bd1d219d91228b7b8122c493c415">&#9670;&#160;</a></span>HookDeInitFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TeaPacket::HookDeInitFunction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a69b4813f378b592d26cab480ea54f038">TP_DeInitFunction</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>deInitFunction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>priority</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Hooks a function to be called in INIT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deInitFunction</td><td>The function to be called </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the function. DeInit functions are called from largest (100) to smallest (1). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adfed8c13b415c52de7a0768b62eab6c8" name="adfed8c13b415c52de7a0768b62eab6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfed8c13b415c52de7a0768b62eab6c8">&#9670;&#160;</a></span>HookInitFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TeaPacket::HookInitFunction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a618e494c250176b83ea340844994723d">TP_InitFunction</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>initFunction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t</td>          <td class="paramname"><span class="paramname"><em>priority</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Hooks a function to be called in INIT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initFunction</td><td>The function to be called </td></tr>
+    <tr><td class="paramname">priority</td><td>The priority of the function. Init functions are called from smallest (1) to largest (100). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1a82ffee8d6b485c70fe1ef620d605d1" name="a1a82ffee8d6b485c70fe1ef620d605d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a82ffee8d6b485c70fe1ef620d605d1">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TeaPacket::Initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes all used <a class="el" href="namespaceTeaPacket.html">TeaPacket</a> systems. </p>
+
+</div>
+</div>
 <a id="a9a7e77a1cbf5468622b429031f1a7447" name="a9a7e77a1cbf5468622b429031f1a7447"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a7e77a1cbf5468622b429031f1a7447">&#9670;&#160;</a></span>Log() <span class="overload">[1/3]</span></h2>
 
@@ -260,6 +452,51 @@ template&lt;typename T&gt; </div>
 </div><div class="memdoc">
 
 <p>Logs a string to an implementation-defined location. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="af9e3baabf5398e5393e8864daac79d12" name="af9e3baabf5398e5393e8864daac79d12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e3baabf5398e5393e8864daac79d12">&#9670;&#160;</a></span>DeInitFunctionList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto TeaPacket::DeInitFunctionList = std::list&lt;std::pair&lt;<a class="el" href="#a69b4813f378b592d26cab480ea54f038">TP_DeInitFunction</a>, uint16_t&gt;&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07c60ab44cb900469c9135a0b04e906a" name="a07c60ab44cb900469c9135a0b04e906a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07c60ab44cb900469c9135a0b04e906a">&#9670;&#160;</a></span>InitFunctionList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto TeaPacket::InitFunctionList = std::list&lt;std::pair&lt;<a class="el" href="#a618e494c250176b83ea340844994723d">TP_InitFunction</a>, uint16_t&gt;&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

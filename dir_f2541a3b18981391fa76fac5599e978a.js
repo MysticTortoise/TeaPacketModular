@@ -1,6 +1,8 @@
 var dir_f2541a3b18981391fa76fac5599e978a =
 [
     [ "Assets", "dir_b95bf2d6ee3b03d4a802b612310bca3f.html", "dir_b95bf2d6ee3b03d4a802b612310bca3f" ],
+    [ "Core", "dir_1fcae67130d3141726b72ad847686247.html", "dir_1fcae67130d3141726b72ad847686247" ],
+    [ "Endianness", "dir_aac282240c7c3bd336201a5432574716.html", "dir_aac282240c7c3bd336201a5432574716" ],
     [ "Graphics", "dir_97034e50aef7b664e5199d6ef06b143a.html", "dir_97034e50aef7b664e5199d6ef06b143a" ],
     [ "Logging", "dir_a4880e25470e4d21d940ed59cfe70f39.html", "dir_a4880e25470e4d21d940ed59cfe70f39" ],
     [ "MacroUtils", "dir_4e8030983e41d48d08f06e8d4cb69049.html", "dir_4e8030983e41d48d08f06e8d4cb69049" ],

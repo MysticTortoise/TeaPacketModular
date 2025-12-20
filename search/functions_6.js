@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hookinits_0',['HookInits',['../namespaceTeaPacket_1_1System.html#a2d9c229a244bddee0bca4577ea032c5e',1,'TeaPacket::System']]]
+  ['hookdeinitfunction_0',['HookDeInitFunction',['../namespaceTeaPacket.html#a2b78bd1d219d91228b7b8122c493c415',1,'TeaPacket']]],
+  ['hookinitfunction_1',['HookInitFunction',['../namespaceTeaPacket.html#adfed8c13b415c52de7a0768b62eab6c8',1,'TeaPacket']]]
 ];
