@@ -112,12 +112,15 @@ $(function(){initNavTree('classTeaPacket_1_1Graphics_1_1UniformBuffer.html','');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a70d1c9bb9a277810ad1d3691d8930b47" id="r_a70d1c9bb9a277810ad1d3691d8930b47"><td class="memItemLeft" align="right" valign="top">constexpr decltype(size)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70d1c9bb9a277810ad1d3691d8930b47">GetSize</a> () const</td></tr>
+<tr class="memdesc:a70d1c9bb9a277810ad1d3691d8930b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size, in bytes, of the buffer.  <br /></td></tr>
 <tr class="separator:a70d1c9bb9a277810ad1d3691d8930b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a724ba0d8ca6e884e4d52ca5da763eb60" id="r_a724ba0d8ca6e884e4d52ca5da763eb60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a724ba0d8ca6e884e4d52ca5da763eb60">UniformBuffer</a> (const <a class="el" href="structTeaPacket_1_1Graphics_1_1UniformBufferParameters.html">UniformBufferParameters</a> &amp;parameters)</td></tr>
+<tr class="memdesc:a724ba0d8ca6e884e4d52ca5da763eb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a buffer from specified parameters.  <br /></td></tr>
 <tr class="separator:a724ba0d8ca6e884e4d52ca5da763eb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb96fb65ea29de29bd82cd2a61672170" id="r_acb96fb65ea29de29bd82cd2a61672170"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb96fb65ea29de29bd82cd2a61672170">~UniformBuffer</a> ()</td></tr>
 <tr class="separator:acb96fb65ea29de29bd82cd2a61672170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99fe4bd35146b038c6f94a126bd84cf9" id="r_a99fe4bd35146b038c6f94a126bd84cf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99fe4bd35146b038c6f94a126bd84cf9">SendData</a> (const void *data)</td></tr>
+<tr class="memdesc:a99fe4bd35146b038c6f94a126bd84cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the data in this Uniform buffer.  <br /></td></tr>
 <tr class="separator:a99fe4bd35146b038c6f94a126bd84cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63605f3f5caaf3522073d1eba68ffd24" id="r_a63605f3f5caaf3522073d1eba68ffd24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63605f3f5caaf3522073d1eba68ffd24">SetActive</a> (size_t index)</td></tr>
 <tr class="separator:a63605f3f5caaf3522073d1eba68ffd24"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,11 +134,13 @@ Static Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3e7879ed703f234423641eac466ebe0b" id="r_a3e7879ed703f234423641eac466ebe0b"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; PlatformUniformBuffer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e7879ed703f234423641eac466ebe0b">platformBuffer</a></td></tr>
+<tr class="memdesc:a3e7879ed703f234423641eac466ebe0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the implementation-defined data this buffer uses.  <br /></td></tr>
 <tr class="separator:a3e7879ed703f234423641eac466ebe0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a6fc2559c004ccdb8b2c4f0a5cd52ab13" id="r_a6fc2559c004ccdb8b2c4f0a5cd52ab13"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fc2559c004ccdb8b2c4f0a5cd52ab13">ShouldUBBeEndianSwapped</a></td></tr>
+<tr class="memdesc:a6fc2559c004ccdb8b2c4f0a5cd52ab13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the data inside a <a class="el" href="classTeaPacket_1_1Graphics_1_1UniformBuffer.html">UniformBuffer</a> needs to be Endian Swapped when sending the data over.  <br /></td></tr>
 <tr class="separator:a6fc2559c004ccdb8b2c4f0a5cd52ab13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -161,6 +166,8 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates a buffer from specified parameters. </p>
 
 </div>
 </div>
@@ -205,6 +212,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets the size, in bytes, of the buffer. </p>
+
 </div>
 </div>
 <a id="a99fe4bd35146b038c6f94a126bd84cf9" name="a99fe4bd35146b038c6f94a126bd84cf9"></a>
@@ -222,6 +231,9 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the data in this Uniform buffer. </p>
+<dl class="section warning"><dt>Warning</dt><dd>DO NOT UPDATE THE DATA IN THIS BUFFER WHILE A DRAW CALL IS BEING MADE! This may cause issues on certain platforms. </dd></dl>
+
 </div>
 </div>
 <a id="a63605f3f5caaf3522073d1eba68ffd24" name="a63605f3f5caaf3522073d1eba68ffd24"></a>
@@ -238,6 +250,12 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Binds this buffer to a buffer slot. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the buffer slot to be bound to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -265,6 +283,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Endian-Swaps a value if UniformBuffers require data to be Endian-Swapped. Use this instead of ShouldUBBeEndianSwapped where possible. </p>
 
 </div>
 </div>
@@ -280,6 +299,8 @@ template&lt;typename T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A pointer to the implementation-defined data this buffer uses. </p>
 
 </div>
 </div>
@@ -302,6 +323,9 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Whether the data inside a <a class="el" href="classTeaPacket_1_1Graphics_1_1UniformBuffer.html">UniformBuffer</a> needs to be Endian Swapped when sending the data over. </p>
+<p>Certain platforms (Wii U) require the data within a Uniform Buffer to be endian swapped before being sent over. The user must do this swapping themselves, as UniformBuffers know nothing about the data within them. </p>
 
 </div>
 </div>
