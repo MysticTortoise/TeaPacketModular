@@ -7,7 +7,7 @@ namespace TeaPacket::Graphics
 {
     class Texture;
 
-    /// A GPU-based PrimitiveType
+    /// A GPU-based Primitive Type
     enum class ShaderVariableBaseType : unsigned char
     {
         Float,  ///< Single-precision float
