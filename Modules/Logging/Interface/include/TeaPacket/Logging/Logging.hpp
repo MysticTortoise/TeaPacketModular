@@ -6,6 +6,7 @@
 
 namespace TeaPacket
 {
+    /// Functions related to debugging and logging information.
     namespace Logging
     {
         /// Initialize the logging system

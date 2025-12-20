@@ -18,7 +18,7 @@ namespace TeaPacket::Graphics{
     /// - The active Mesh
     /// - The active Shader
     /// - The active Texture (s)
-    /// - The data in each Uniform Buffer.
+    /// - The active UniformBuffer (s).
     /// - The active Viewport.
     void DrawMesh();
 }

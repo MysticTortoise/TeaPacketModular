@@ -48,7 +48,7 @@ PROJECT_NAME           = "TeaPacket"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = 0.0.1
+PROJECT_NUMBER         = 0.1.0
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewers a
@@ -992,6 +992,8 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ../Modules/Assets/Interface/include
+INPUT += ../Modules/Core/Interface/include
+INPUT += ../Modules/Endianness/Interface/include
 INPUT += ../Modules/Graphics/Interface/include
 INPUT += ../Modules/Logging/Interface/include
 INPUT += ../Modules/MacroUtils/Interface/include

@@ -4,6 +4,7 @@
 namespace TeaPacket::Graphics
 {
 
+    /// Parameters for making a UniformBuffer.
     struct UniformBufferParameters
     {
         /// The starting data this buffer should be filled with. If this is nullptr, then the data will be initialized to all 0.

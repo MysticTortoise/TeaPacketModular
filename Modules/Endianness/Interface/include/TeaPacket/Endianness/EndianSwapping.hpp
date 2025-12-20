@@ -7,8 +7,10 @@
 #include <type_traits>
 #endif
 
+/// Functions related to Endianness and Endian Swapping
 namespace TeaPacket::Endianness
 {
+    /// Swaps the endianness of a value.
     template<typename T> T Swap(T val) = delete;
 
     template<>
@@ -92,7 +94,7 @@ namespace TeaPacket::Endianness
 #endif
     }
 
-
+    /// Whether the current platform is Big Endian or not.
     constexpr bool IsBigEndian()
     {
 #if __cplusplus >= 202002L

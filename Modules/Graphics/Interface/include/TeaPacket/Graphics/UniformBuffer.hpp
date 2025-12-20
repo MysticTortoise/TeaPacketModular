@@ -7,6 +7,7 @@ namespace TeaPacket::Graphics
     struct UniformBufferParameters;
     struct PlatformUniformBuffer;
 
+    /// Represents a block of GPU data bound to a Uniform slot.
     class UniformBuffer
     {
     private:
