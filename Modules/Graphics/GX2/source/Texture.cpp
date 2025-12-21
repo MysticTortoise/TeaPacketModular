@@ -31,7 +31,7 @@ platformTexture(std::make_unique<PlatformTexture>(PlatformTexture{
             .image = nullptr,
             .mipmapSize = 0,
             .mipmaps = nullptr,
-            .tileMode = GX2_TILE_MODE_LINEAR_ALIGNED,
+            .tileMode = GX2_TILE_MODE_DEFAULT,
             .swizzle = 0,
             .alignment = 0,
             .pitch = 0,
@@ -67,23 +67,21 @@ format(parameters.format)
             TextureFilterModeToGX2(parameters.filterMode));
     }
 
-    if (parameters.data != nullptr)
-    {
-        platformTexture->gx2Texture.surface.image = MEMAllocFromDefaultHeapEx(
+    platformTexture->gx2Texture.surface.image = MEMAllocFromDefaultHeapEx(
             platformTexture->gx2Texture.surface.imageSize,
             static_cast<int>(platformTexture->gx2Texture.surface.alignment));
-        auto* toPtr = static_cast<unsigned char*>(platformTexture->gx2Texture.surface.image);
-        const auto* fromPtr = static_cast<unsigned char*>(parameters.data);
-        
-        const uint32_t pitch    = GetTextureFormatBytesPerPixel(format) * platformTexture->gx2Texture.surface.pitch;
-        const uint32_t srcPitch = GetTextureFormatBytesPerPixel(format) * width;
-        
-        for (uint32_t i = 0; i < height; i++)
-        {
-            memcpy(toPtr, fromPtr, srcPitch);
-            toPtr += pitch;
-            fromPtr += srcPitch;
-        }
+
+    if (parameters.data != nullptr)
+    {
+        GX2Surface proxySurface = platformTexture->gx2Texture.surface;
+        proxySurface.tileMode = GX2_TILE_MODE_LINEAR_SPECIAL;
+        proxySurface.pitch = proxySurface.width;
+        proxySurface.image = parameters.data;
+        proxySurface.imageSize = GetTextureFormatBytesPerPixel(format) * width * height;
+        GX2CopySurface(&proxySurface, 0, 0, &platformTexture->gx2Texture.surface, 0, 0);
+    } else
+    {
+        memset(platformTexture->gx2Texture.surface.image, 0, static_cast<int>(platformTexture->gx2Texture.surface.alignment));
     }
 }
 
