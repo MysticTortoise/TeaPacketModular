@@ -1,10 +1,9 @@
 import sys, os
 
-sys.path.insert(0, os.path.dirname(__file__))
+os.chdir(os.path.dirname(__file__))
 
-import Setup.spirv_cross
-
+from Setup import spirv_cross
 
 def setup():
-    if not Setup.spirv_cross.check():
-        Setup.spirv_cross.grab()
+    if not spirv_cross.check():
+        spirv_cross.grab()

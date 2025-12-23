@@ -44,3 +44,17 @@ if(NOT COMMAND TP_use_profile)
         include("${TEAPACKET_ROOT}/Profiles/${profileName}.CMake")
     endfunction()
 endif()
+
+if(NOT COMMAND TP_run_python_script)
+    function(TP_run_python_script projectName scriptPath)
+        cmake_path(GET scriptPath PARENT_PATH scriptDir)
+        add_custom_command(
+                TARGET ${projectName}
+                PRE_BUILD
+                COMMENT "Running ${scriptPath}"
+                COMMAND python ${scriptPath}
+                WORKING_DIRECTORY "${scriptDir}"
+                VERBATIM
+        )
+    endfunction()
+endif()
