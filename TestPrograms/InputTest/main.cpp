@@ -25,10 +25,17 @@ int main()
         Viewport::ClearColor(255, 0, 0);
         
         Input::InputDevice::PollAllDevices();
+        uint8_t g = 0;
+        uint8_t b = 0;
         if (Input::InputDevice::AnyDeviceHasButtonPressed(Input::InputButtonType::KEY_ENTER))
         {
-            Viewport::ClearColor(0, 255, 0);
+            g = 255;
         }
+        if (Input::InputDevice::AnyDeviceHasButtonPressed(Input::InputButtonType::MOUSE_RIGHT))
+        {
+            b = 255;
+        }
+        Viewport::ClearColor(255, g, b);
         Display::FinishRender(0);
         Display::PresentAll();
     }

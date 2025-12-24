@@ -15,11 +15,16 @@ using namespace TeaPacket::Input;
 
 enum class ControllerType : uint8_t
 {
-    Keyboard = 0
+    Keyboard = 0,
+    Mouse = 1,
+    COUNT
 };
-constexpr ControllerType controllerTypes[] = {
-    ControllerType::Keyboard
+constexpr ControllerType controllerTypes[static_cast<size_t>(ControllerType::COUNT)] = {
+    ControllerType::Keyboard,
+    ControllerType::Mouse,
 };
+
+GameInputCallbackToken callbackTokens[static_cast<size_t>(ControllerType::COUNT)] = {};
 
 static void CALLBACK OnGameInputDeviceConnectedDisconnected(
     [[maybe_unused]] _In_ const GameInputCallbackToken callbackToken,
@@ -42,6 +47,9 @@ static void CALLBACK OnGameInputDeviceConnectedDisconnected(
         case Keyboard:
             inputDevice = CreateKeyboardDevice();
             break;
+        case Mouse:
+            inputDevice = CreateMouseDevice();
+            break;
         default: throw std::exception("NOT VALID CONTEXT");
         }
         
@@ -63,8 +71,18 @@ static void CALLBACK OnGameInputDeviceConnectedDisconnected(
     }
 }
 
-
-static GameInputCallbackToken callbackToken;
+static void RegisterCallback(const GameInputKind kind, const ControllerType controllerType)
+{
+    CheckErrorWinCom(gameInput->RegisterDeviceCallback(
+        nullptr,
+        kind,
+        GameInputDeviceConnected,
+        GameInputBlockingEnumeration,
+        (void*)&controllerTypes[static_cast<size_t>(controllerType)],
+        OnGameInputDeviceConnectedDisconnected,
+        &callbackTokens[static_cast<size_t>(controllerType)]
+    ));
+}
 
 void Input::Initialize()
 {
@@ -72,20 +90,16 @@ void Input::Initialize()
         GameInputCreate(gameInput.GetAddressOf())
     );
     
-    CheckErrorWinCom(gameInput->RegisterDeviceCallback(
-        nullptr,
-        GameInputKindKeyboard,
-        GameInputDeviceConnected,
-        GameInputBlockingEnumeration,
-        (void*)&controllerTypes[static_cast<size_t>(ControllerType::Keyboard)],
-        OnGameInputDeviceConnectedDisconnected,
-        &callbackToken
-    ));
+    RegisterCallback(GameInputKindKeyboard, ControllerType::Keyboard);
+    RegisterCallback(GameInputKindMouse, ControllerType::Mouse);
 
 }
 
 void Input::DeInitialize()
 {
-    gameInput->UnregisterCallback(callbackToken);
+    for (const GameInputCallbackToken callbackToken : callbackTokens)
+    {
+        gameInput->UnregisterCallback(callbackToken);
+    }
     //gameInput->Release();
 }

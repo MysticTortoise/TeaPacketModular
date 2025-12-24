@@ -3,8 +3,6 @@
 #include <wrl/client.h>
 #include <GameInput.h>
 
-#include <vector>
-
 namespace TeaPacket::Input
 {
     struct PlatformInputDevice
