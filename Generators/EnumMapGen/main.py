@@ -70,6 +70,7 @@ def generate(file):
     dest_file_path = os.getcwd() + "/include/" + dest_file
     pathlib.Path(os.path.dirname(dest_file_path)).mkdir(parents=True, exist_ok=True)
     with open(dest_file_path, "w+") as genfile:
+        genfile.write("#include <stdexcept>\n")
         for header in headers:
             genfile.write("#include " + header + "\n")
         for namespace in namespaces:
