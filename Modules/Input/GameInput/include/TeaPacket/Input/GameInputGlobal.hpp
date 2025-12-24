@@ -13,9 +13,4 @@ namespace TeaPacket::Input
 {
     inline Microsoft::WRL::ComPtr<IGameInput> gameInput;
     inline std::list<InputDevice> inputDevices;
-
-    constexpr GameInputKind supportedInputTypes =
-        GameInputKindGamepad |
-        GameInputKindKeyboard |
-        GameInputKindMouse;
 }

@@ -11,7 +11,5 @@ namespace TeaPacket::Input
     {
         IGameInputDevice* inputDevice;
         Microsoft::WRL::ComPtr<IGameInputReading> reading;
-
-        std::vector<GameInputKeyState> keyboardState;
     };
 }

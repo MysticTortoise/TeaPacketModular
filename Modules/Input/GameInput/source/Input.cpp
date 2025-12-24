@@ -6,30 +6,50 @@
 
 #include "TeaPacket/Input/GameInputGlobal.hpp"
 #include "TeaPacket/Input/InputDevice.hpp"
+#include "TeaPacket/Input/InputFunctions.hpp"
 #include "TeaPacket/Input/PlatformInputDevice.hpp"
 #include "TeaPacket/Logging/Logging.hpp"
 
 using namespace TeaPacket;
 using namespace TeaPacket::Input;
 
-void CALLBACK OnDeviceConnectedDisconnected(
-    [[maybe_unused]] _In_ GameInputCallbackToken callbackToken,
+enum class ControllerType : uint8_t
+{
+    Keyboard = 0
+};
+constexpr ControllerType controllerTypes[] = {
+    ControllerType::Keyboard
+};
+
+static void CALLBACK OnGameInputDeviceConnectedDisconnected(
+    [[maybe_unused]] _In_ const GameInputCallbackToken callbackToken,
     [[maybe_unused]] _In_ void * context,
     [[maybe_unused]] _In_ IGameInputDevice * device,
-    [[maybe_unused]] _In_ uint64_t timestamp,
-    [[maybe_unused]] _In_ GameInputDeviceStatus currentStatus,
-    [[maybe_unused]] _In_ GameInputDeviceStatus previousStatus)
+    [[maybe_unused]] _In_ const uint64_t timestamp,
+    [[maybe_unused]] _In_ const GameInputDeviceStatus currentStatus,
+    [[maybe_unused]] _In_ const GameInputDeviceStatus previousStatus)
 {
     const GameInputDeviceInfo* info = nullptr;
     CheckErrorWinCom(device->GetDeviceInfo(&info));
     
     if (currentStatus == GameInputDeviceConnected && previousStatus == GameInputDeviceNoStatus)
     {
-        inputDevices.emplace_back(InputDevice{
-            .platformDevice = std::make_unique<PlatformInputDevice>(PlatformInputDevice{
-                .inputDevice = device
-            })
+        
+        InputDevice* inputDevice = nullptr;
+        switch (*static_cast<ControllerType*>(context))
+        {
+            using enum ControllerType;
+        case Keyboard:
+            inputDevice = CreateKeyboardDevice();
+            break;
+        default: throw std::exception("NOT VALID CONTEXT");
+        }
+        
+        inputDevice->platformDevice = std::make_unique<PlatformInputDevice>(PlatformInputDevice{
+            .inputDevice = device,
+            .reading = nullptr,
         });
+        
     } else if (currentStatus == GameInputDeviceNoStatus)
     {
         for (auto i = inputDevices.begin(); i != inputDevices.end(); ++i)
@@ -43,6 +63,7 @@ void CALLBACK OnDeviceConnectedDisconnected(
     }
 }
 
+
 static GameInputCallbackToken callbackToken;
 
 void Input::Initialize()
@@ -53,11 +74,11 @@ void Input::Initialize()
     
     CheckErrorWinCom(gameInput->RegisterDeviceCallback(
         nullptr,
-        supportedInputTypes,
+        GameInputKindKeyboard,
         GameInputDeviceConnected,
         GameInputBlockingEnumeration,
-        nullptr,
-        OnDeviceConnectedDisconnected,
+        (void*)&controllerTypes[static_cast<size_t>(ControllerType::Keyboard)],
+        OnGameInputDeviceConnectedDisconnected,
         &callbackToken
     ));
 
