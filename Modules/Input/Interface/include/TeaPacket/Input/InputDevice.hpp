@@ -6,19 +6,20 @@
 
 #include <functional>
 
-#include "InputButtons.hpp"
-#include "InputDeviceParameters.hpp"
-
+#include "TeaPacket/Input/InputButtons.hpp"
+#include "TeaPacket/Input/InputDeviceParameters.hpp"
 namespace TeaPacket::Input
 {
     struct PlatformInputDevice;
     enum class InputButtonType : uint32_t;
+    enum class InputAxisType : uint16_t;
     
     class InputDevice
     {
     private:
         std::function<void(InputDevice*)> PollInputFunction;
         std::function<bool(const InputDevice*, InputButtonType)> GetButtonFunction;
+        std::function<float(const InputDevice*, InputAxisType)> GetAxisFunction;
         std::function<std::string_view(const InputDevice*)> GetNameFunction;
     
     public:
@@ -40,6 +41,10 @@ namespace TeaPacket::Input
         {
             return GetButtonFunction(this, button);
         }
+        [[nodiscard]] float GetAxis(const InputAxisType axis) const
+        {
+            return GetAxisFunction(this, axis);
+        }
 
     public:
 
@@ -56,6 +61,17 @@ namespace TeaPacket::Input
                 }
             }
             return false;
+        }
+        [[nodiscard]] static float GetAxisFromAnyDevice(const InputAxisType axis)
+        {
+            for (const auto& device : GetDevices())
+            {
+                if (const float val = device->GetAxis(axis); val != std::numeric_limits<float>::infinity())
+                {
+                    return val;
+                }
+            }
+            return std::numeric_limits<float>::infinity();
         }
         static void PollAllDevices()
         {

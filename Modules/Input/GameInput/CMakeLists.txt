@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD 20)
 TP_add_interface_subdirectory(Input)
 TP_add_interface_subdirectory(Core)
 TP_add_interface_subdirectory(Logging)
+TP_add_impl_subdirectory(Window Windows)
 
 add_subdirectory_no_overwrite(TeaPacket_MacroUtils_WinSpecific "${TEAPACKET_ROOT}/Modules/MacroUtils/WindowsSpecific" WindowsSpecificMacros)
 
@@ -24,6 +25,7 @@ target_include_directories(TeaPacket_Input_GameInput PUBLIC include
 "D:\\Downloads\\gameinput.3.1.26100.6879\\native\\include")
 target_link_libraries(TeaPacket_Input_GameInput TeaPacket_Input_Base 
         TeaPacket_Logging_Base TeaPacket_Core_Base TeaPacket_MacroUtils_WinSpecific
+        TeaPacket_Window_Windows
         "D:\\Downloads\\gameinput.3.1.26100.6879\\native\\lib\\x64\\GameInput.lib"
 )
 

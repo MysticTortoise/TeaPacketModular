@@ -2,20 +2,24 @@
 
 #include <GameInput.h>
 
+#include <wtypes.h>
+
 #include "TeaPacket/Input/GameInputGlobal.hpp"
+#include "TeaPacket/Input/InputAxis.hpp"
 #include "TeaPacket/Input/InputDevice.hpp"
 #include "TeaPacket/Input/PlatformInputDevice.hpp"
 #include "TeaPacket/Input/InputButtonInfo/IsMouse.hpp"
 #include "TeaPacket/Input/GameInput/VirtualKey.gen"
 #include "TeaPacket/MacroUtils/WindowsSpecific.hpp"
+#include "TeaPacket/Window/PlatformWindow.hpp"
+#include "TeaPacket/Window/Window.hpp"
 
 using namespace TeaPacket;
 
 static bool MouseGetButtonPressed(const InputDevice* device, const InputButtonType button)
 {
     if (!IsMouseButton(button)) { return false; }
-    const GameInputMouseState* state =
-        std::any_cast<GameInputMouseState>(&device->controllerData);
+    const auto* state = std::any_cast<GameInputMouseState>(&device->controllerData);
 
     switch (button)
     {
@@ -30,6 +34,32 @@ static bool MouseGetButtonPressed(const InputDevice* device, const InputButtonTy
     }
 }
 
+static void TP_GetWindowRect(RECT* rect)
+{
+    assert(rect != nullptr);
+    assert(Window::Window::GetWindow(0) != nullptr);
+    GetWindowRect(Window::Window::GetWindow(0)->platformWindow->windowHandle, rect);
+}
+
+static float MouseGetAxis(const InputDevice* device, const InputAxisType axis)
+{
+    const auto* state = std::any_cast<GameInputMouseState>(&device->controllerData);
+    RECT windowRect;
+    
+    switch (axis)
+    {
+        using enum InputAxisType;
+    case POINTER_X:
+        TP_GetWindowRect(&windowRect);
+        return static_cast<float>(state->absolutePositionX - windowRect.left) / (windowRect.right - windowRect.left);
+    case POINTER_Y:
+        TP_GetWindowRect(&windowRect);
+        return static_cast<float>(state->absolutePositionY - windowRect.top) / (windowRect.bottom - windowRect.top);
+    default:
+        return std::numeric_limits<float>::infinity();
+    }
+}
+
 static void MousePollInput(InputDevice* device)
 {
     CheckErrorWinCom(
@@ -38,8 +68,7 @@ static void MousePollInput(InputDevice* device)
             device->platformDevice->inputDevice,
             device->platformDevice->reading.ReleaseAndGetAddressOf())
     );
-    GameInputMouseState* state =
-        std::any_cast<GameInputMouseState>(&device->controllerData);
+    auto* state = std::any_cast<GameInputMouseState>(&device->controllerData);
     device->platformDevice->reading->GetMouseState(state);
 }
 
@@ -48,6 +77,7 @@ InputDevice* Input::CreateMouseDevice()
     return &inputDevices.emplace_back(InputDeviceParameters{
             .PollInputFunction = MousePollInput,
             .GetButtonFunction = MouseGetButtonPressed,
+            .GetAxisFunction = MouseGetAxis,
             .GetNameFunction = GenericInputDeviceGetName,
             .isPhysical = true,
             .controllerData = GameInputMouseState()

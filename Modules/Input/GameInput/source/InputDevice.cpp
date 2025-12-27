@@ -22,6 +22,7 @@ std::vector<InputDevice*> InputDevice::GetDevices()
 InputDevice::InputDevice(const InputDeviceParameters& parameters):
 PollInputFunction(parameters.PollInputFunction),
 GetButtonFunction(parameters.GetButtonFunction),
+GetAxisFunction(parameters.GetAxisFunction),
 GetNameFunction(parameters.GetNameFunction),
 controllerData(parameters.controllerData)
 {

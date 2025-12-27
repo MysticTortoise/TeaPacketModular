@@ -28,6 +28,13 @@ static bool KeyboardGetButtonPressed(const InputDevice* device, const InputButto
     return false;
 }
 
+static float KeyboardGetAxis(const InputDevice* device, const InputAxisType axis)
+{
+    (void)device;
+    (void)axis;
+    return 0.0f;
+}
+
 static void KeyboardPollInput(InputDevice* device)
 {
     CheckErrorWinCom(
@@ -52,6 +59,7 @@ InputDevice* Input::CreateKeyboardDevice()
     return &inputDevices.emplace_back(InputDeviceParameters{
             .PollInputFunction = KeyboardPollInput,
             .GetButtonFunction = KeyboardGetButtonPressed,
+            .GetAxisFunction = KeyboardGetAxis,
             .GetNameFunction = GenericInputDeviceGetName,
             .isPhysical = true,
             .controllerData = std::vector<GameInputKeyState>()
