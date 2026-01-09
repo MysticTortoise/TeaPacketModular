@@ -3,8 +3,9 @@
 
 namespace TeaPacket::Input
 {
+    /// Represents an axis on a controller. Not all controllers support all axes.
     enum class InputAxisType : uint16_t{
-        POINTER_X,
-        POINTER_Y,
+        POINTER_X, ///< A generic POINTER X axis. Depending on the device, this can represent mouse position, touch position, or pointer position.
+        POINTER_Y, ///< Same as POINTER_X but for the Y axis.
     };
 }

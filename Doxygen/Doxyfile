@@ -995,6 +995,7 @@ INPUT                  = ../Modules/Assets/Interface/include
 INPUT += ../Modules/Core/Interface/include
 INPUT += ../Modules/Endianness/Interface/include
 INPUT += ../Modules/Graphics/Interface/include
+INPUT += ../Modules/Input/Interface/include
 INPUT += ../Modules/Logging/Interface/include
 INPUT += ../Modules/MacroUtils/Interface/include
 INPUT += ../Modules/Math/Interface/include

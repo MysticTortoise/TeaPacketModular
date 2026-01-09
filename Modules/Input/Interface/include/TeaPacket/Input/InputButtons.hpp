@@ -3,6 +3,12 @@
 
 namespace TeaPacket::Input
 {
+    /// @brief Represents a button on a controller.
+    /// @details Buttons are any boolean/digital values on a controller (pressed or unpressed only). <br>
+    /// Each value in this enum is prefixed with a name.
+    /// - START_ and END_ should never be polled. They are utility enum values.
+    /// - KEY_ represents keys on a keyboard.
+    /// - MOUSE_ represents mouse buttons.
     enum class InputButtonType : uint32_t{
         NONE = 0,
         START_KEY,
