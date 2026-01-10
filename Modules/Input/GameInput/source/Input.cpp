@@ -1,5 +1,6 @@
 #include "TeaPacket/Input/Input.hpp"
 
+#include <algorithm>
 #include <GameInput.h>
 
 #include "TeaPacket/MacroUtils/WindowsSpecific.hpp"
@@ -195,12 +196,15 @@ float Input::GetAxisValue(const ControllerSlot slot, const InputAxisType axis)
             
             if (axis == POINTER_X)
             {
-                return  static_cast<float>(mouseState.absolutePositionX - windowRect.left) /
-                        static_cast<float>(windowRect.right - windowRect.left);
+                return  std::clamp(
+                    static_cast<float>(mouseState.absolutePositionX - windowRect.left) /
+                        static_cast<float>(windowRect.right - windowRect.left),
+                        0.0f, 1.0f);
             } else
             {
-                return  static_cast<float>(mouseState.absolutePositionY - windowRect.top) /
-                        static_cast<float>(windowRect.bottom - windowRect.top);
+                return  std::clamp(static_cast<float>(mouseState.absolutePositionY - windowRect.top) /
+                        static_cast<float>(windowRect.bottom - windowRect.top),
+                        0.0f, 1.0f);
             }
         }
         return 0;

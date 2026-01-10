@@ -48,20 +48,20 @@ int main()
         if (Input::IsButtonPressed(0, Input::InputButtonType::PAD_LEFT_TRIGGER))
         {
             Viewport::ClearColor(
-                Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_LEFT_X)*255,
-                (Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_LEFT_Y)*255),
+                static_cast<uint8_t>(Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_LEFT_X) * 255),
+                static_cast<uint8_t>(Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_LEFT_Y) * 255),
                 Input::IsButtonPressed(0, Input::InputButtonType::PAD_A) ? 255 : 0);
         } else if (Input::IsButtonPressed(0, Input::InputButtonType::PAD_RIGHT_TRIGGER))
         {
             Viewport::ClearColor(
-                Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_RIGHT_X)*255,
-                Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_RIGHT_Y)*255,
+                static_cast<uint8_t>(Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_RIGHT_X) * 255),
+                static_cast<uint8_t>(Input::GetAxisValue(0, Input::InputAxisType::PAD_STICK_RIGHT_Y) * 255),
                 Input::IsButtonPressed(0, Input::InputButtonType::PAD_STICK_LEFT) ? 255 : 0);
         } else
         {
             Viewport::ClearColor(
-                Input::GetAxisValue(0, Input::InputAxisType::POINTER_X)*255,
-                Input::GetAxisValue(0, Input::InputAxisType::POINTER_Y)*255,
+                static_cast<uint8_t>(Input::GetAxisValue(0, Input::InputAxisType::POINTER_X) * 255),
+                static_cast<uint8_t>(Input::GetAxisValue(0, Input::InputAxisType::POINTER_Y) * 255),
                 Input::IsButtonPressed(0, Input::InputButtonType::MISC_TOUCH) ? 255 : 0);
         }
         

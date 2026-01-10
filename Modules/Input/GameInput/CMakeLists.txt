@@ -28,15 +28,17 @@ TP_EnumMapGen("${CMAKE_CURRENT_SOURCE_DIR}/generators/GamepadButton.gmap" TeaPac
 TP_run_python_script(TeaPacket_Input_GameInput "${CMAKE_CURRENT_SOURCE_DIR}/setup/setup.py")
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/setup/gameinput_dir.gen") # not very good but idk how to make it better
     file(READ "${CMAKE_CURRENT_SOURCE_DIR}/setup/gameinput_dir.gen" GAMEINPUT_DIR)
+else()
+    message("WARNING: DUE TO JANK, YOU WILL NEED TO COMPILE, LET IT ERROR, THEN RELOAD CMAKE, THEN EVERYTHING WILL WORK FINE. I KNOW IT SUCKS BUT IM TOO LAZY TO FIX IT YET.")
 endif ()
 
 target_include_directories(TeaPacket_Input_GameInput PRIVATE source)
 target_include_directories(TeaPacket_Input_GameInput PUBLIC include 
-"D:\\Downloads\\gameinput.3.1.26100.6879\\native\\include")
+"${GAMEINPUT_DIR}/include")
 target_link_libraries(TeaPacket_Input_GameInput TeaPacket_Input_Base 
         TeaPacket_Logging_Base TeaPacket_Core_Base TeaPacket_MacroUtils_WinSpecific
         TeaPacket_Window_Windows TeaPacket_Types_Base
-        "D:\\Downloads\\gameinput.3.1.26100.6879\\native\\lib\\x64\\GameInput.lib"
+        "${GAMEINPUT_DIR}/lib/GameInput.lib"
 )
 
 include("${TEAPACKET_ROOT}/CMakeCommons/CommonEnd.CMake")
