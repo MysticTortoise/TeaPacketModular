@@ -7,9 +7,11 @@ namespace TeaPacket::Input
     enum class InputAxisType : uint16_t{
         POINTER_X, ///< A generic POINTER X axis. Depending on the device, this can represent mouse position, touch position, or pointer position.
         POINTER_Y, ///< Same as POINTER_X but for the Y axis.
+        START_PAD,
         PAD_STICK_LEFT_X,
         PAD_STICK_LEFT_Y,
         PAD_STICK_RIGHT_X,
         PAD_STICK_RIGHT_Y,
+        END_PAD
     };
 }

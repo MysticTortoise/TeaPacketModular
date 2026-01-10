@@ -1,0 +1,26 @@
+Destination TeaPacket/Input/GameInput/GamepadButtons.gen
+Namespaces TeaPacket::Input
+Enum Class InputButtonType
+Enum GameInputGamepadButtons Alias GamepadButton
+Headers <GameInput.h> "TeaPacket/Input/InputButtons.hpp"
+Data
+PAD_A GameInputGamepadA
+PAD_B GameInputGamepadB
+PAD_C GameInputGamepadC
+PAD_X GameInputGamepadX
+PAD_Y GameInputGamepadY
+PAD_Z GameInputGamepadZ
+PAD_LEFT_BUMPER GameInputGamepadLeftShoulder
+PAD_RIGHT_BUMPER GameInputGamepadRightShoulder
+PAD_LEFT_TRIGGER GameInputGamepadLeftTriggerButton
+PAD_RIGHT_TRIGGER GameInputGamepadRightTriggerButton
+PAD_START GameInputGamepadMenu
+PAD_SELECT GameInputGamepadView
+PAD_DPAD_UP GameInputGamepadDPadUp
+PAD_DPAD_RIGHT GameInputGamepadDPadRight
+PAD_DPAD_DOWN GameInputGamepadDPadDown
+PAD_DPAD_LEFT GameInputGamepadDPadLeft
+PAD_STICK_LEFT GameInputGamepadLeftThumbstick
+PAD_STICK_RIGHT GameInputGamepadRightThumbstick
+End
+Default NONE GameInputGamepadNone

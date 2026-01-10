@@ -6,10 +6,12 @@
 
 #include "TeaPacket/Input/GameInputGlobal.hpp"
 #include "TeaPacket/Input/InputAxis.hpp"
+#include "TeaPacket/Input/InputAxisInfo.hpp"
 #include "TeaPacket/Input/InputButtonInfo.hpp"
 #include "TeaPacket/Input/GameInput/VirtualKey.gen"
 #include "TeaPacket/Input/GameInput/MouseButtons.gen"
 #include "TeaPacket/Input/GameInput/ControllerType.gen"
+#include "TeaPacket/Input/GameInput/GamepadButtons.gen"
 #include "TeaPacket/Window/PlatformWindow.hpp"
 #include "TeaPacket/Window/Window.hpp"
 
@@ -145,11 +147,18 @@ bool Input::IsButtonPressed(const ControllerSlot slot, const InputButtonType but
             }
         }
         return false;
-    } else if (IsMouseButton(button))
+    }
+    if (IsMouseButton(button))
     {
-        GameInputMouseState mouseState;
+        GameInputMouseState mouseState{};
         reading->GetMouseState(&mouseState);
         return mouseState.buttons & InputButtonTypeToMouseButton(button);
+    }
+    if (IsGamepadButton(button))
+    {
+        GameInputGamepadState gamepadState{};
+        reading->GetGamepadState(&gamepadState);
+        return gamepadState.buttons & InputButtonTypeToGamepadButton(button); 
     }
 
     return false;
@@ -181,7 +190,7 @@ float Input::GetAxisValue(const ControllerSlot slot, const InputAxisType axis)
             // POINTER is a mouse
             RECT windowRect;
             TP_GetWindowRect(&windowRect);
-            GameInputMouseState mouseState;
+            GameInputMouseState mouseState{};
             readings.v[slot].currentReading->GetMouseState(&mouseState);
             
             if (axis == POINTER_X)
@@ -193,6 +202,25 @@ float Input::GetAxisValue(const ControllerSlot slot, const InputAxisType axis)
                 return  static_cast<float>(mouseState.absolutePositionY - windowRect.top) /
                         static_cast<float>(windowRect.bottom - windowRect.top);
             }
+        }
+        return 0;
+    }
+    if (IsGamepadAxis(axis))
+    {
+        GameInputGamepadState state;
+        readings.v[slot].currentReading->GetGamepadState(&state);
+        switch (axis)
+        {
+        case PAD_STICK_LEFT_X:
+            return state.leftThumbstickX;
+        case PAD_STICK_LEFT_Y:
+            return state.leftThumbstickY;
+        case PAD_STICK_RIGHT_X:
+            return state.rightThumbstickX;
+        case PAD_STICK_RIGHT_Y:
+            return state.rightThumbstickY;
+        default:
+            return 0;
         }
     }
 

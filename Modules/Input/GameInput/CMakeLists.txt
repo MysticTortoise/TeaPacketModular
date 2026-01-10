@@ -21,6 +21,8 @@ add_library(TeaPacket_Input_GameInput STATIC ${sources})
 TP_EnumMapGen("${CMAKE_CURRENT_SOURCE_DIR}/generators/VirtualKey.gmap" TeaPacket_Input_GameInput)
 TP_EnumMapGen("${CMAKE_CURRENT_SOURCE_DIR}/generators/MouseButton.gmap" TeaPacket_Input_GameInput)
 TP_EnumMapGen("${CMAKE_CURRENT_SOURCE_DIR}/generators/ControllerType.gmap" TeaPacket_Input_GameInput)
+TP_EnumMapGen("${CMAKE_CURRENT_SOURCE_DIR}/generators/GamepadButton.gmap" TeaPacket_Input_GameInput)
+
 
 target_include_directories(TeaPacket_Input_GameInput PRIVATE source)
 target_include_directories(TeaPacket_Input_GameInput PUBLIC include 
