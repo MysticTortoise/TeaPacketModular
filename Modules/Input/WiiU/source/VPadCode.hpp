@@ -91,7 +91,14 @@ static float GetVPadAxisValue(const InputAxisType axis)
         return static_cast<float>(vpadXTouch) / 1920.0f;
     case InputAxisType::POINTER_Y:
         return static_cast<float>(vpadYTouch) / 1080.0f;
+    case InputAxisType::PAD_STICK_LEFT_X:
+        return currentVPadStatus.leftStick.x;
+    case InputAxisType::PAD_STICK_LEFT_Y:
+        return currentVPadStatus.leftStick.y;
+    case InputAxisType::PAD_STICK_RIGHT_X:
+        return currentVPadStatus.rightStick.x;
+    case InputAxisType::PAD_STICK_RIGHT_Y:
+        return currentVPadStatus.rightStick.y;
+    default: return 0;
     }
-
-    return 0;
 }
