@@ -117,6 +117,7 @@ format(parameters.format)
 }
 
 Texture::~Texture() = default;
+Texture::Texture(Texture&& source) noexcept = default;
 
 TextureData Texture::GetData() const
 {

@@ -22,6 +22,7 @@ namespace TeaPacket::Graphics
 
         /// Creates a texture using parameters.
         explicit Texture(const TextureParameters& parameters);
+        Texture(Texture&& source) noexcept;
         ~Texture();
 
         /// Get the pixel data of this texture. Only works if cpuReadable is set when this texture is created.

@@ -12,11 +12,18 @@ int main()
     Logging::Initialize();
     
 
-    while (System::isRunning)
+    LogString(Assets::ReadTextFile("test.txt"));
+    LogString(Assets::ReadTextFile("dir/test2.txt"));
+    const std::vector<unsigned char> data = Assets::ReadBinaryFile("test.byt");
+    for (const unsigned char character : data)
+    {
+        Log(static_cast<int>(character));
+        Log(static_cast<char>(character));
+    }
+    LogString("HEYA");
+    while (System::ShouldRun())
     {
         System::ProcessSystem();
-        LogString(Assets::ReadTextFile("test.txt"));
-        LogString(Assets::ReadTextFile("dir/test2.txt"));
     }
 
     Logging::DeInitialize();

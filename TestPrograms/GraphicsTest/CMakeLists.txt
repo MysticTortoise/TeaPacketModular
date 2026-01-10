@@ -5,6 +5,8 @@ include("${TEAPACKET_ROOT}/Subtools/AssetMixer/Functions.CMake")
 
 add_executable(TeaPacket_TestPrograms_Graphics main.cpp)
 TP_use_profile(${TEAPACKET_PLATFORM})
+TP_add_extension_subdirectory(STBImageLoader)
+target_link_libraries(TeaPacket_TestPrograms_Graphics TeaPacket_Extension_STBImageLoader)
 
 if(${TEAPACKET_PLATFORM} STREQUAL "Windows")
         set(PARSER_DIRS "${TEAPACKET_ROOT}/Modules/Graphics/Direct3D11/AssetMixer/Parsers/")

@@ -1,3 +1,4 @@
+#include "../../Extensions/STBImageLoader/include/TeaPacket/Extensions/STBImageLoader/ImageLoader.hpp"
 #include "TeaPacket/Graphics/Display.hpp"
 #include "TeaPacket/Graphics/DisplayParameters.hpp"
 #include "TeaPacket/Graphics/Graphics.hpp"
@@ -24,7 +25,7 @@
 #define GTP_Textures 5
 #define GTP_Uniforms 6
 
-#define GTP_STAGE GTP_ClearColor
+#define GTP_STAGE GTP_Uniforms
 
 using namespace TeaPacket;
 using namespace TeaPacket::Graphics;
@@ -42,10 +43,10 @@ constexpr float vertData[] = {
 // Vertex Data WITH UV Data
 #if GTP_STAGE >= GTP_Textures
 constexpr float vertData[] = {
-    -0.5f, 0.5f, 0.0f, 1.0f, 
-     0.5f, 0.5f, 1.0f, 1.0f,
-    -0.5f,-0.5f, 0.0f, 0.0f,
-     0.5f,-0.5f, 1.0f, 0.0f
+    -0.5f, 0.5f, 0.0f, 0.0f, 
+     0.5f, 0.5f, 1.0f, 0.0f,
+    -0.5f,-0.5f, 0.0f, 1.0f,
+     0.5f,-0.5f, 1.0f, 1.0f
 };
 #endif
 
@@ -160,7 +161,7 @@ int main()
         .filterMode = TextureFilterMode::Nearest,
         .wrapMode = TextureWrapMode::Wrap
     };
-    auto tex = Texture(texParms);
+    auto tex = /*Texture(texParms);//*/Extensions::STBImageLoader::LoadImage("test.jpg", texParms);
     tex.SetActive(1);
 #endif
     

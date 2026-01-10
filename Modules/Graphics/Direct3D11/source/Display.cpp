@@ -86,7 +86,7 @@ void Display::PresentAll()
 {
     for (const auto& display : Displays)
     {
-        CheckErrorWinCom(display->platformDisplay->swapchain->Present(0,0));
+        CheckErrorWinCom(display->platformDisplay->swapchain->Present(1,0));
     }
 }
 

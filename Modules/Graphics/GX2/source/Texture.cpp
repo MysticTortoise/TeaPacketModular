@@ -93,3 +93,4 @@ void Texture::SetActive(const uint8_t index)
 
 
 Texture::~Texture() = default;
+Texture::Texture(Texture&& source) noexcept = default;
