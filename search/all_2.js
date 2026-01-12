@@ -1,15 +1,10 @@
 var searchData=
 [
-  ['clamp_0',['Clamp',['../namespaceTeaPacket_1_1Graphics.html#a2c0e738ccc0722c3f98d7775d1f63491a08825280e3f8137556325061ba67ff8c',1,'TeaPacket::Graphics']]],
-  ['classdefutils_2ehpp_1',['ClassDefUtils.hpp',['../ClassDefUtils_8hpp.html',1,'']]],
-  ['clearcolor_2',['ClearColor',['../classTeaPacket_1_1Graphics_1_1Viewport.html#aed61f9967198edd257dcbd20180ce8ae',1,'TeaPacket::Graphics::Viewport']]],
-  ['color_3',['Color',['../Color_8hpp.html#a53338a0b49a473a6b1579362ea2b42b9',1,'Color.hpp']]],
-  ['color_2ehpp_4',['Color.hpp',['../Color_8hpp.html',1,'']]],
-  ['color3_5',['Color3',['../Color_8hpp.html#a705bf5eefd4a26ef0991bd8deca511d8',1,'Color.hpp']]],
-  ['controllerslot_6',['ControllerSlot',['../namespaceTeaPacket_1_1Input.html#a97f0639ec0e405de3692877fa2cff022',1,'TeaPacket::Input']]],
-  ['controllertype_7',['ControllerType',['../namespaceTeaPacket_1_1Input.html#a0d192ef59200473adfbead3bbd1db91b',1,'TeaPacket::Input']]],
-  ['controllertype_2ehpp_8',['ControllerType.hpp',['../ControllerType_8hpp.html',1,'']]],
-  ['core_2ehpp_9',['Core.hpp',['../Core_8hpp.html',1,'']]],
-  ['cpu_10',['CPU',['../namespaceTeaPacket_1_1Graphics.html#aa65ec3f6a0cf5637fc2e4ea85ca6d06aa2b55387dd066c5bac646ac61543d152d',1,'TeaPacket::Graphics']]],
-  ['cpureadable_11',['cpuReadable',['../structTeaPacket_1_1Graphics_1_1TextureUseFlags.html#aedfeb86ce6554ad54def8c80a5d1e759',1,'TeaPacket::Graphics::TextureUseFlags']]]
+  ['basetype_0',['baseType',['../structTeaPacket_1_1Graphics_1_1ShaderVariableType.html#a83f3c0019abd85bdba58adc449324e9c',1,'TeaPacket::Graphics::ShaderVariableType']]],
+  ['begin_1',['begin',['../classTeaPacket_1_1BorrowedFixedArray.html#affb50929098314bd9c0c1f006d80d569',1,'TeaPacket::BorrowedFixedArray::begin()'],['../classTeaPacket_1_1BorrowedFixedArray.html#ae43c81e3c011da2a0270be162a19c32c',1,'TeaPacket::BorrowedFixedArray::begin() const'],['../classTeaPacket_1_1BorrowedFixedArray.html#affb50929098314bd9c0c1f006d80d569',1,'TeaPacket::BorrowedFixedArray&lt; void &gt;::begin()'],['../classTeaPacket_1_1BorrowedFixedArray.html#ae43c81e3c011da2a0270be162a19c32c',1,'TeaPacket::BorrowedFixedArray&lt; void &gt;::begin() const']]],
+  ['beginrender_2',['BeginRender',['../classTeaPacket_1_1Graphics_1_1Display.html#a7a5ab76f1724ec686571c509a9f21048',1,'TeaPacket::Graphics::Display::BeginRender()'],['../classTeaPacket_1_1Graphics_1_1Viewport.html#a8381180ca44a2653df939a7e4e44164e',1,'TeaPacket::Graphics::Viewport::BeginRender()']]],
+  ['bgra8_3',['BGRA8',['../namespaceTeaPacket_1_1Graphics.html#a7ce6d7b636e492d8647a50bbaf4015e4a508ecc95f0c676df4a7dfe11beb0d573',1,'TeaPacket::Graphics']]],
+  ['borrowedfixedarray_4',['BorrowedFixedArray',['../classTeaPacket_1_1BorrowedFixedArray.html',1,'TeaPacket::BorrowedFixedArray&lt; T &gt;'],['../classTeaPacket_1_1BorrowedFixedArray.html#aafdc5de95f6634f038aa493956973ca4',1,'TeaPacket::BorrowedFixedArray::BorrowedFixedArray()'],['../classTeaPacket_1_1BorrowedFixedArray_3_01void_01_4.html#a851227541394f586bf41fc71ea4b91c4',1,'TeaPacket::BorrowedFixedArray&lt; void &gt;::BorrowedFixedArray(void *data, const size_t size)'],['../classTeaPacket_1_1BorrowedFixedArray.html#aafdc5de95f6634f038aa493956973ca4',1,'TeaPacket::BorrowedFixedArray&lt; void &gt;::BorrowedFixedArray(void *data, const size_t size)']]],
+  ['borrowedfixedarray_2ehpp_5',['BorrowedFixedArray.hpp',['../BorrowedFixedArray_8hpp.html',1,'']]],
+  ['borrowedfixedarray_3c_20void_20_3e_6',['BorrowedFixedArray&lt; void &gt;',['../classTeaPacket_1_1BorrowedFixedArray_3_01void_01_4.html',1,'TeaPacket']]]
 ];
