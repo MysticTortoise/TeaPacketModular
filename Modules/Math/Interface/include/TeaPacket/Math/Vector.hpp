@@ -15,7 +15,7 @@ Vector<T,i>& operator OP##= (const Vector<T,s>& other) \
     static_assert(i >= s, "Left side Vector must have a larger or equal size to the Right side Vector when performing math operations."); \
     for(unsigned char j = 0; j < s; j++) \
     { \
-        this[j] OP##= other[j]; \
+        _values[j] OP##= other._values[j]; \
     }\
     return *this; \
 } \
@@ -23,7 +23,7 @@ template<unsigned char s> \
 Vector<T,i> operator OP (const Vector<T,s>& other) const \
 { \
     static_assert(i >= s, "Left side Vector must have a larger or equal size to the Right side Vector when performing math operations."); \
-    Vector<T,i> vec = this; \
+    Vector<T,i> vec = *this; \
     return vec OP##= other; \
 }
 
@@ -79,6 +79,16 @@ namespace TeaPacket::Math
             return true;
         }
 
+        Vector<T,i> operator-() const
+        {
+            Vector<T,i> vec;
+            for (unsigned char j = 0; j < i; j++)
+            {
+                vec._values[j] = -_values[j];
+            }
+            return vec;
+        }
+
         /// Check if two Vectors of the same type do not have equal values.
         /// @param other The Vector to compare to this one.
         /// @return Whether the two Vectors aren't equal or not.
@@ -120,7 +130,7 @@ namespace TeaPacket::Math
         /// Default initializer, setting all values to garbage data.
         Vector()
         {
-            _values = {};
+            //_values = {};
         }
 
         /// Initializer list, sets all values to the given values in the list.
